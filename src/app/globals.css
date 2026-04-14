@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #171717;
+  --primary-text: #111827;
+  --primary: #730099;
+}
+
+.dark {
+  --background: #171717;
+  --foreground: #FAFAFA;
+  --primary-text: #6F80A6;
+  --primary: #730099;
+
+
+}
+
+@theme {
+  --font-sans: var(--font-poppins);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary-text: var(--primary-text);
+  --color-primary: var(--primary);
+
+
+}
