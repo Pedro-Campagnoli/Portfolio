@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.className}`}
     >
-      <body className="bg-background text-foreground">
+      <body className="bg-background text-foreground pt-16 flex flex-col items-center">
         <Header />
         {children}
       </body>
