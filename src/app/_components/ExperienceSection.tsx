@@ -33,7 +33,6 @@ export default function ExperienceSection() {
       <div className="flex flex-col">
         <SectionLabel file="experiencia.spec.ts" describe="Experiência" />
 
-        <h2 className="text-foreground font-display mt-4 font-semibold text-center text-3xl" />
         <DevCard label="trajetoria-profissional.ts">
           <Reveal
             as="ul"

@@ -26,9 +26,10 @@ export default function CountUp({
 
     let raf = 0;
     let startTime = 0;
+    const safeDuration = Math.max(duration, 1);
     const tick = (now: number) => {
       if (!startTime) startTime = now;
-      const progress = Math.min((now - startTime) / duration, 1);
+      const progress = Math.min((now - startTime) / safeDuration, 1);
       const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
       setValue(Math.round(eased * to));
       if (progress < 1) raf = requestAnimationFrame(tick);
