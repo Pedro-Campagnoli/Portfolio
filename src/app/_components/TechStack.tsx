@@ -15,6 +15,8 @@ import ReactIcon from "@/public/icons/react.svg";
 import Sql from "@/public/icons/sql.svg";
 import Typescript from "@/public/icons/typescript.svg";
 
+import Reveal, { RevealItem } from "./motion/Reveal";
+
 type Tech = { icon: StaticImageData; title: string };
 
 const technologies: Tech[] = [
@@ -37,7 +39,7 @@ const extraTechnologies = technologies.slice(INITIAL_COUNT);
 
 function TechItem({ tech }: { tech: Tech }) {
   return (
-    <li className="group flex flex-col items-center gap-3">
+    <div className="group flex flex-col items-center gap-3">
       <Image
         src={tech.icon}
         alt={tech.title}
@@ -48,7 +50,7 @@ function TechItem({ tech }: { tech: Tech }) {
       <span className="text-primary-text text-center text-xs">
         {tech.title}
       </span>
-    </li>
+    </div>
   );
 }
 
@@ -88,11 +90,17 @@ export default function TechStack() {
         </div>
       </div>
 
-      <ul className="grid grid-cols-4 gap-x-2 gap-y-8 p-6 sm:grid-cols-5">
+      <Reveal
+        as="ul"
+        className="grid grid-cols-4 gap-x-2 gap-y-8 p-6 sm:grid-cols-5"
+        stagger={0.06}
+      >
         {baseTechnologies.map((tech) => (
-          <TechItem key={tech.title} tech={tech} />
+          <RevealItem as="li" key={tech.title}>
+            <TechItem tech={tech} />
+          </RevealItem>
         ))}
-      </ul>
+      </Reveal>
 
       {hasMore && (
         <div
@@ -107,7 +115,9 @@ export default function TechStack() {
           >
             <ul className="grid grid-cols-4 gap-x-2 gap-y-8 px-6 pt-2 pb-6 sm:grid-cols-5">
               {extraTechnologies.map((tech) => (
-                <TechItem key={tech.title} tech={tech} />
+                <li key={tech.title}>
+                  <TechItem tech={tech} />
+                </li>
               ))}
             </ul>
           </div>

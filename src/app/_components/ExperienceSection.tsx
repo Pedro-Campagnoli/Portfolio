@@ -1,4 +1,5 @@
 import DevCard from "./DevCard";
+import Reveal, { RevealItem } from "./motion/Reveal";
 import SectionLabel from "./SectionLabel";
 
 type ExperienceEntry = {
@@ -25,47 +26,58 @@ const experience: ExperienceEntry[] = [
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="w-full flex justify-around mx-auto h-auto">
+    <section
+      id="experience"
+      className="w-full flex justify-around mx-auto h-auto"
+    >
       <div className="flex flex-col">
         <SectionLabel file="experiencia.spec.ts" describe="Experiência" />
-        
-          <h2 className="text-foreground font-display mt-4 font-semibold text-center text-3xl">
-          </h2>
-          <DevCard label="trajetoria-profissional.ts">
-            <ul className="flex w-full max-w-2xl flex-col">
-              {experience.map((item, index) => (
-                <li
-                  key={item.period}
-                  className={`flex flex-col gap-2 border-primary-text/20 py-6 ${
-                    index !== experience.length - 1 ? "border-b" : ""
-                  }`}
-                >
-                  <span className="text-signal font-mono text-xs">{item.period}</span>
-                  <h3 className="text-foreground text-lg font-semibold">
-                    {item.role}{" "}
-                    <span className="text-primary-text font-normal">· {item.company}</span>
-                  </h3>
-                  <p className="text-primary-text text-sm">{item.description}</p>
-                </li>
-              ))}
-            </ul>
-          </DevCard>
+
+        <h2 className="text-foreground font-display mt-4 font-semibold text-center text-3xl" />
+        <DevCard label="trajetoria-profissional.ts">
+          <Reveal
+            as="ul"
+            className="flex w-full max-w-2xl flex-col"
+            stagger={0.1}
+          >
+            {experience.map((item, index) => (
+              <RevealItem
+                as="li"
+                key={item.period}
+                className={`flex flex-col gap-2 border-primary-text/20 py-6 ${
+                  index !== experience.length - 1 ? "border-b" : ""
+                }`}
+              >
+                <span className="text-signal font-mono text-xs">
+                  {item.period}
+                </span>
+                <h3 className="text-foreground text-lg font-semibold">
+                  {item.role}{" "}
+                  <span className="text-primary-text font-normal">
+                    · {item.company}
+                  </span>
+                </h3>
+                <p className="text-primary-text text-sm">{item.description}</p>
+              </RevealItem>
+            ))}
+          </Reveal>
+        </DevCard>
       </div>
 
       <div className="flex flex-col h-full justify-center items-end">
-        <div className="flex flex-col gap-4">
+        <Reveal as="div" className="flex flex-col gap-4" delay={0.1}>
           <SectionLabel file="qa-portfolio.spec.ts" describe="QA Portfolio" />
           <DevCard label="qa-portfolio.ts">
             <div className="flex flex-col items-center gap-4">
               <span className="text-signal text-justify w-full font-mono text-xs">{`// em construção`}</span>
               <p className="text-primary-text max-w-2xl text-justify">
-                Projetos focados em Quality Assurance incluindo testes funcionais,
-                validação de APIs, documentação de bugs e práticas de qualidade
-                aplicadas em aplicações reais.
+                Projetos focados em Quality Assurance incluindo testes
+                funcionais, validação de APIs, documentação de bugs e práticas de
+                qualidade aplicadas em aplicações reais.
               </p>
             </div>
           </DevCard>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
