@@ -5,14 +5,14 @@
   --foreground: #12161C;
   --primary-text: #4B5563;
   --primary: #8B2FC9;
-  --signal: #39D98A;
+  --signal: #157347;
 }
 
 .dark {
   --background: #0B0F14;
   --foreground: #E6EDF3;
   --primary-text: #97A3B0;
-  --primary: #8B2FC9;
+  --primary: #B266E0;
   --signal: #39D98A;
 }
 

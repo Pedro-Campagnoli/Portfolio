@@ -32,7 +32,7 @@ export default function Header() {
     <header className={`fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md text-primary-text flex items-center justify-around p-8 z-50 transition-all duration-300 ease-in-out ${scrolled ? "shadow-md border-b border-primary-text" : ""}`}>
       <h1 className="text-2xl font-display font-bold">Pedro Campagnoli</h1>
 
-      <div className="flex gap-10">
+      <div className="hidden md:flex gap-10">
         {Links.map((link) => (
             <a
             className="hover:brightness-150 dark:hover:brightness-80 transition-all duration-300"
