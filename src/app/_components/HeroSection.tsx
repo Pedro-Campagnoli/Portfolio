@@ -99,7 +99,7 @@ export default function HeroSection() {
 
           <motion.div
             variants={fadeUp}
-            className="rounded-xl flex items-center p-2 gap-2 border border-border bg-surface hover:border-color-border-strong"
+            className="rounded-xl flex items-center p-2 gap-2 border border-border bg-surface hover:border-border-strong"
           >
             <div className="bg-signal h-2 w-2 rounded-full" />
             <TypeLine
@@ -133,13 +133,13 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex gap-4">
-            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-color-border-strong">
+            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-border-strong">
               ✓ <CountUp to={6} delay={400} /> passed
             </span>
-            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-color-border-strong">
+            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-border-strong">
               · 0 failed
             </span>
-            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-color-border-strong">
+            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-border-strong">
               · build: ready
             </span>
           </motion.div>
@@ -158,7 +158,7 @@ export default function HeroSection() {
 
             <a
               href="mailto:dev.pedro.campagnoli@gmail.com"
-              className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-6 py-4 text-sm text-foreground transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:border-color-border-strong"
+              className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-6 py-4 text-sm text-foreground transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:border-border-strong"
             >
               Contato
               <LuMail />

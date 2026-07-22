@@ -52,7 +52,9 @@ export default function AboutSection() {
         </div>
       </Reveal>
 
-      <AboutCards />
+      <Reveal delay={0.1}>
+        <AboutCards />
+      </Reveal>
     </section>
   );
 }
