@@ -34,7 +34,7 @@ export default function Header() {
       <div className="hidden md:flex gap-10">
         {Links.map((link) => (
           <a
-            className="hover:brightness-15 text-sm 0 dark:hover:brightness-80 transition-all duration-300"
+            className="relative text-sm transition-colors hover:text-foreground after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-primary after:transition-all after:duration-300 after:content-[''] hover:after:w-full"
             href={link.href}
             key={link.href}
           >
