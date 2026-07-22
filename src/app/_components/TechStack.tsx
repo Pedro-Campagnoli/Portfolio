@@ -1,37 +1,32 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { LuChevronDown } from "react-icons/lu";
-
-import Cypress from "@/public/icons/cypress.svg";
-import Docker from "@/public/icons/docker.svg";
-import Git from "@/public/icons/git.svg";
-import Javascript from "@/public/icons/javascript.svg";
-import Jest from "@/public/icons/jest.svg";
-import Node from "@/public/icons/node.svg";
-import Postman from "@/public/icons/postman.svg";
-import ReactIcon from "@/public/icons/react.svg";
-import Sql from "@/public/icons/sql.svg";
-import Typescript from "@/public/icons/typescript.svg";
 
 import { EASE } from "./motion/config";
 import Reveal, { RevealItem } from "./motion/Reveal";
 
-type Tech = { icon: StaticImageData; title: string };
+type Tech = { icon: string; title: string };
 
+// Icons live in /public/icons and are referenced by URL — drop a new .svg in
+// that folder and add an entry here, no import needed.
 const technologies: Tech[] = [
-  { icon: Typescript, title: "TypeScript" },
-  { icon: Javascript, title: "JavaScript" },
-  { icon: Node, title: "Node.js" },
-  { icon: ReactIcon, title: "React" },
-  { icon: Postman, title: "Postman" },
-  { icon: Sql, title: "SQL" },
-  { icon: Git, title: "Git" },
-  { icon: Docker, title: "Docker" },
-  { icon: Jest, title: "Jest" },
-  { icon: Cypress, title: "Cypress" },
+  { icon: "/icons/playwright.svg", title: "Playwright" },
+  { icon: "/icons/cypress.svg", title: "Cypress" },
+  { icon: "/icons/jest.svg", title: "Jest" },
+  { icon: "/icons/selenium.svg", title: "Selenium" },
+  { icon: "/icons/postman.svg", title: "Postman" },
+  { icon: "/icons/nest.svg", title: "Nest.js" },
+  { icon: "/icons/react.svg", title: "React" },
+  { icon: "/icons/node.svg", title: "Node.js" },
+  { icon: "/icons/typescript.svg", title: "TypeScript" },
+  { icon: "/icons/javascript.svg", title: "JavaScript" },
+  { icon: "/icons/html.svg", title: "HTML" },
+  { icon: "/icons/sql.svg", title: "SQL" },
+  { icon: "/icons/git.svg", title: "Git" },
+  { icon: "/icons/docker.svg", title: "Docker" },
 ];
 
 // Icons kept while collapsed = one grid row. The grid reflows (4 cols on
@@ -50,6 +45,7 @@ function TechItem({ tech }: { tech: Tech }) {
         alt={tech.title}
         width={40}
         height={40}
+        unoptimized
         className="h-10 w-10 object-contain transition-transform duration-200 group-hover:-translate-y-1"
       />
       <span className="text-primary-text text-center text-xs">
