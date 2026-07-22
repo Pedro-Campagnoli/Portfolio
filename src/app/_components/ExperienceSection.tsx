@@ -30,7 +30,7 @@ export default function ExperienceSection() {
       id="experience"
       className="w-full flex justify-around mx-auto h-auto"
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-4">
         <SectionLabel file="experiencia.spec.ts" describe="Experiência" />
 
         <DevCard label="trajetoria-profissional.ts">
