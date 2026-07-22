@@ -6,16 +6,18 @@ type LinkProps = {
   href: string;
   label: string;
 };
+
 export default function Header() {
   const Links: LinkProps[] = [
-    { href: "", label: "Inicio" },
+    { href: "#", label: "Início" },
     { href: "#about", label: "Sobre" },
-    { href: "#expercience", label: "Experiencia" },
-    { href: "#projects", label: "Projetos" },
+    { href: "#experience", label: "Experiência" },
+    { href: "#skills", label: "Skills" },
+    { href: "#qa-projects", label: "QA Portfolio" },
     { href: "#contact", label: "Contato" },
   ];
 
-   const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +30,7 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md text-primary-text flex items-center justify-around p-8 z-50 transition-all duration-300 ease-in-out ${scrolled ? "shadow-md border-b border-primary-text" : ""}`}>
-      <h1 className="text-2xl font-bold">Pedro Campagnoli</h1>
+      <h1 className="text-2xl font-display font-bold">Pedro Campagnoli</h1>
 
       <div className="flex gap-10">
         {Links.map((link) => (
