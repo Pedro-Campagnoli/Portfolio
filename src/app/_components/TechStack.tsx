@@ -32,14 +32,12 @@ const technologies: Tech[] = [
   { icon: Cypress, title: "Cypress" },
 ];
 
-const INITIAL_COUNT = 5;
-// On mobile the collapsed grid shows a single clean row of 4; the 5th base
-// item only appears from the md breakpoint (where the grid becomes 5 columns)
-// or once the list is expanded.
+// How many icons stay visible while collapsed, per breakpoint. The grid is a
+// single continuous flow (grid-cols-4 / md:grid-cols-5), so a collapsed row is
+// exactly one grid row: 4 on mobile, 5 from md. Expanding reveals the rest and
+// they flow into clean rows with no orphaned items.
 const MOBILE_VISIBLE = 4;
-
-const baseTechnologies = technologies.slice(0, INITIAL_COUNT);
-const extraTechnologies = technologies.slice(INITIAL_COUNT);
+const DESKTOP_VISIBLE = 5;
 
 function TechItem({ tech }: { tech: Tech }) {
   return (
@@ -58,10 +56,19 @@ function TechItem({ tech }: { tech: Tech }) {
   );
 }
 
+function collapsedVisibilityClass(index: number): string {
+  // Beyond the desktop row: hidden on every breakpoint.
+  if (index >= DESKTOP_VISIBLE) return "hidden";
+  // The item that only fits the desktop row: hidden on mobile, shown from md.
+  if (index >= MOBILE_VISIBLE) return "hidden md:block";
+  // First mobile row: always visible.
+  return "";
+}
+
 export default function TechStack() {
   const [expanded, setExpanded] = useState(false);
 
-  const hasMore = extraTechnologies.length > 0;
+  const hasMore = technologies.length > MOBILE_VISIBLE;
 
   return (
     <div className="border-border bg-surface overflow-hidden w-full rounded-2xl border">
@@ -99,38 +106,16 @@ export default function TechStack() {
         className="grid grid-cols-4 gap-x-2 gap-y-8 p-6 md:grid-cols-5"
         stagger={0.06}
       >
-        {baseTechnologies.map((tech, index) => (
+        {technologies.map((tech, index) => (
           <RevealItem
             as="li"
             key={tech.title}
-            className={index >= MOBILE_VISIBLE && !expanded ? "hidden md:block" : ""}
+            className={expanded ? "" : collapsedVisibilityClass(index)}
           >
             <TechItem tech={tech} />
           </RevealItem>
         ))}
       </Reveal>
-
-      {hasMore && (
-        <div
-          className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
-            expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-          }`}
-        >
-          <div
-            className={`min-h-0 overflow-hidden transition-opacity duration-500 ease-in-out ${
-              expanded ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <ul className="grid grid-cols-4 gap-x-2 gap-y-8 px-6 pt-2 pb-6 md:grid-cols-5">
-              {extraTechnologies.map((tech) => (
-                <li key={tech.title}>
-                  <TechItem tech={tech} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
