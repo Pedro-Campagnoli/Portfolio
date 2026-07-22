@@ -12,9 +12,6 @@ export default function Header() {
     { href: "#", label: "Início" },
     { href: "#about", label: "Sobre" },
     { href: "#experience", label: "Experiência" },
-    { href: "#skills", label: "Skills" },
-    { href: "#qa-projects", label: "QA Portfolio" },
-    { href: "#contact", label: "Contato" },
   ];
 
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +27,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md text-primary-text flex items-center justify-around px-4 py-2 z-50 transition-all duration-300 ease-in-out ${scrolled ? "shadow-md border-b border-primary-text" : ""}`}
+      className={`fixed top-0 left-0 w-full bg-background backdrop-blur-md text-primary-text flex items-center justify-around px-4 py-2 z-50 border-b transition-[border-color,box-shadow] duration-300 ease-in-out ${scrolled ? "border-border shadow-md" : "border-transparent shadow-none"}`}
     >
       <h1 className="text-xl font-display font-bold">Pedro Campagnoli</h1>
 
