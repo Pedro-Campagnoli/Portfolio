@@ -1,13 +1,13 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TypeLineProps = {
   text: string;
   className?: string;
-  speed?: number; // ms per character
-  startDelay?: number; // ms before typing starts
+  speed?: number;
+  startDelay?: number;
 };
 
 export default function TypeLine({
@@ -17,10 +17,20 @@ export default function TypeLine({
   startDelay = 250,
 }: TypeLineProps) {
   const reduce = useReducedMotion();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(reduce ? text.length : 0);
+
+  const runKey = `${text}|${speed}|${startDelay}|${reduce}`;
+  const prevRunKey = useRef(runKey);
+  // eslint-disable-next-line react-hooks/refs
+  if (prevRunKey.current !== runKey) {
+    // eslint-disable-next-line react-hooks/refs
+    prevRunKey.current = runKey;
+    if (count !== 0) setCount(0);
+  }
 
   useEffect(() => {
     if (reduce) {
+      setCount(text.length);
       return;
     }
     let i = 0;
@@ -39,12 +49,11 @@ export default function TypeLine({
     };
   }, [text, speed, startDelay, reduce]);
 
-  const displayCount = reduce ? text.length : count;
-  const done = displayCount >= text.length;
+  const done = count >= text.length;
 
   return (
     <span className={className}>
-      <span aria-hidden="true">{text.slice(0, displayCount)}</span>
+      <span aria-hidden="true">{text.slice(0, count)}</span>
       <span className="sr-only">{text}</span>
       <span
         aria-hidden="true"
