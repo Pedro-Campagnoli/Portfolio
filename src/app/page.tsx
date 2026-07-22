@@ -2,6 +2,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { LuMail } from "react-icons/lu";
 
 import AboutCards from "./_components/AboutCards";
+import ExperienceSection from "./_components/ExperienceSection";
 import IconsList from "./_components/IconsList";
 
 function SectionLabel({ file, describe }: { file: string; describe: string }) {
@@ -133,6 +134,20 @@ export default function Home() {
         </div>
 
         <AboutCards />
+      </section>
+
+      {/* EXPERIENCE */}
+      <section
+        id="experience"
+        className="w-full flex flex-col items-center gap-10 py-24 px-6"
+      >
+        <SectionLabel file="experiencia.spec.ts" describe="Experiência" />
+
+        <h2 className="text-foreground font-display font-semibold text-3xl">
+          Trajetória profissional
+        </h2>
+
+        <ExperienceSection />
       </section>
 
       {/* SKILLS */}
