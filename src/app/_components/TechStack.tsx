@@ -33,6 +33,10 @@ const technologies: Tech[] = [
 ];
 
 const INITIAL_COUNT = 5;
+// On mobile the collapsed grid shows a single clean row of 4; the 5th base
+// item only appears from the md breakpoint (where the grid becomes 5 columns)
+// or once the list is expanded.
+const MOBILE_VISIBLE = 4;
 
 const baseTechnologies = technologies.slice(0, INITIAL_COUNT);
 const extraTechnologies = technologies.slice(INITIAL_COUNT);
@@ -92,11 +96,15 @@ export default function TechStack() {
 
       <Reveal
         as="ul"
-        className="grid grid-cols-4 gap-x-2 gap-y-8 p-6 sm:grid-cols-5"
+        className="grid grid-cols-4 gap-x-2 gap-y-8 p-6 md:grid-cols-5"
         stagger={0.06}
       >
-        {baseTechnologies.map((tech) => (
-          <RevealItem as="li" key={tech.title}>
+        {baseTechnologies.map((tech, index) => (
+          <RevealItem
+            as="li"
+            key={tech.title}
+            className={index >= MOBILE_VISIBLE && !expanded ? "hidden md:block" : ""}
+          >
             <TechItem tech={tech} />
           </RevealItem>
         ))}
@@ -113,7 +121,7 @@ export default function TechStack() {
               expanded ? "opacity-100" : "opacity-0"
             }`}
           >
-            <ul className="grid grid-cols-4 gap-x-2 gap-y-8 px-6 pt-2 pb-6 sm:grid-cols-5">
+            <ul className="grid grid-cols-4 gap-x-2 gap-y-8 px-6 pt-2 pb-6 md:grid-cols-5">
               {extraTechnologies.map((tech) => (
                 <li key={tech.title}>
                   <TechItem tech={tech} />
