@@ -53,6 +53,8 @@
   --font-display: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
 
+  --animate-blink: blink 1s steps(2, start) infinite;
+
   --color-danger: var(--danger);
   --color-warning: var(--warning);
   --color-success: var(--success);
@@ -69,4 +71,27 @@
   --color-border-strong: var(--border-strong);
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Respect users who ask for less motion: kill transitions, animations,
+   and the JS-driven effects fall back to final state via useReducedMotion(). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
