@@ -1,13 +1,27 @@
 @import "tailwindcss";
 
+.disable-transitions *,
+.disable-transitions *::before,
+.disable-transitions *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
 :root {
+
+  --danger: #ff5f56;
+  --warning: #ffbd2e;
+  --success: #27c93f;
+  --info: #42A5F5;
+
+  --card-header-background: #f1f1f1;
   --background: #f6f7f5;
   --foreground: #12161c;
   --primary-text: #4b5563;
   --primary: #8b2fc9;
   --signal: #157347;
 
-  --border: rgba(15, 23, 42, 0.08);
+  --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(15, 23, 42, 0.14);
 
   --surface: #ffffff;
@@ -15,10 +29,16 @@
 }
 
 .dark {
+  --danger: #ff5f56;
+  --warning: #ffbd2e;
+  --success: #27c93f;
+  --info: #42A5F5;
+
+  --card-header-background: #161b22;
   --background: #0b0f14;
   --foreground: #e6edf3;
   --primary-text: #97a3b0;
-  --primary: #b266e0;
+  --primary: #8b2fc9;
   --signal: #39d98a;
 
   --border: rgba(255, 255, 255, 0.08);
@@ -33,11 +53,17 @@
   --font-display: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
 
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-info: var(--info);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary-text: var(--primary-text);
   --color-primary: var(--primary);
   --color-signal: var(--signal);
+  --color-card-header-background: var(--card-header-background);
 
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
