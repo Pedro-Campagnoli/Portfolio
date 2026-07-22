@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 
 import { containerVariants, fadeUp, VIEWPORT } from "./config";
@@ -53,6 +53,19 @@ export default function Reveal({
     );
   }
 
+  const fadeUpWithDelay: Variants = {
+    hidden: fadeUp.hidden,
+    show: {
+      ...(typeof fadeUp.show === "object" ? fadeUp.show : {}),
+      transition: {
+        ...(typeof fadeUp.show === "object" && fadeUp.show.transition
+          ? fadeUp.show.transition
+          : {}),
+        delay,
+      },
+    },
+  };
+
   return (
     <MotionTag
       id={id}
@@ -60,8 +73,7 @@ export default function Reveal({
       initial={reduce ? false : "hidden"}
       whileInView="show"
       viewport={VIEWPORT}
-      variants={fadeUp}
-      transition={{ delay }}
+      variants={fadeUpWithDelay}
     >
       {children}
     </MotionTag>
