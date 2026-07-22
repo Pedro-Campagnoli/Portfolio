@@ -7,8 +7,8 @@ import { FaArrowRight, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { LuMail } from "react-icons/lu";
 
 import DevCard from "./DevCard";
-import { containerVariants, fadeUp } from "./motion/config";
 import CodeStream from "./motion/CodeStream";
+import { containerVariants, fadeUp } from "./motion/config";
 import CountUp from "./motion/CountUp";
 import HeroBackground from "./motion/HeroBackground";
 import TypeLine from "./motion/TypeLine";
@@ -83,7 +83,7 @@ export default function HeroSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate flex min-h-screen w-full flex-col justify-center gap-16 px-4 py-6">
+    <section className="relative isolate flex min-h-screen max-w-screen w-full flex-col justify-center gap-16 px-6 py-6">
       <HeroBackground />
 
       <div className="flex w-full flex-col items-center justify-between gap-10 text-center md:flex-row">
@@ -99,7 +99,7 @@ export default function HeroSection() {
 
           <motion.div
             variants={fadeUp}
-            className="rounded-xl flex items-center p-2 gap-2 border border-border bg-surface hover:border-border-strong"
+            className="rounded-xl flex  mx-auto md:mx-0 items-center p-2 gap-2 border border-border bg-surface hover:border-border-strong"
           >
             <div className="bg-signal h-2 w-2 rounded-full" />
             <TypeLine
@@ -132,7 +132,7 @@ export default function HeroSection() {
             garantindo aplicações estáveis, confiáveis e centradas no usuário.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="flex gap-4">
+          <motion.div variants={fadeUp} className="flex gap-4 mx-auto md:mx-0">
             <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-border-strong">
               ✓ <CountUp to={6} delay={400} /> passed
             </span>
@@ -205,8 +205,8 @@ export default function HeroSection() {
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
         >
           <DevCard label="developer.ts">
-            <div className="flex flex-col">
-              <div className="flex justify-center px-6 py-6">
+            <div className="flex flex-col ">
+              <div className="flex justify-center py-6">
                 <Image
                   width={200}
                   height={200}

@@ -28,7 +28,7 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="w-full flex justify-around mx-auto h-auto"
+      className="w-full flex justify-around mx-auto h-auto flex-col md:flex-row p-6 gap-12 md:gap-0"
     >
       <div className="flex flex-col gap-4">
         <SectionLabel file="experiencia.spec.ts" describe="Experiência" />
