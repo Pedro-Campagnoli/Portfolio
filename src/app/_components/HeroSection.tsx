@@ -1,99 +1,164 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { FaArrowRight, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { LuMail } from "react-icons/lu";
 
 import DevCard from "./DevCard";
+import { containerVariants, fadeUp } from "./motion/config";
+import CodeStream from "./motion/CodeStream";
+import CountUp from "./motion/CountUp";
+import HeroBackground from "./motion/HeroBackground";
+import TypeLine from "./motion/TypeLine";
 import SectionLabel from "./SectionLabel";
 import TechStack from "./TechStack";
 
+const profile = {
+  name: "Pedro Campagnoli",
+  role: "QA Engineer",
+  focus: "Test Automation & Quality",
+  background: "Full Stack Developer",
+  location: "Brasil",
+  isAvailableForHire: true,
+};
+
+const codeLines: ReactNode[] = [
+  <CodeLine number={1} key={1}>
+    <span className="text-primary">const</span>{" "}
+    <span className="text-info">developer</span>
+    <span className="text-primary-text "> = {"{"}</span>
+  </CodeLine>,
+  <CodeLine number={2} key={2}>
+    {"  "}
+    <span className="text-danger">name</span>
+    <span className="text-primary-text">: </span>
+    <span className="text-signal">{`'${profile.name}'`}</span>
+    <span className="text-primary-text">,</span>
+  </CodeLine>,
+  <CodeLine number={3} key={3}>
+    {"  "}
+    <span className="text-danger">role</span>
+    <span className="text-primary-text">: </span>
+    <span className="text-signal">{`'${profile.role}'`}</span>
+    <span className="text-primary-text">,</span>
+  </CodeLine>,
+  <CodeLine number={4} key={4}>
+    {"  "}
+    <span className="text-danger">focus</span>
+    <span className="text-primary-text">: </span>
+    <span className="text-signal">{`'${profile.focus}'`}</span>
+    <span className="text-primary-text">,</span>
+  </CodeLine>,
+  <CodeLine number={5} key={5}>
+    {"  "}
+    <span className="text-danger">background</span>
+    <span className="text-primary-text">: </span>
+    <span className="text-signal">{`'${profile.background}'`}</span>
+    <span className="text-primary-text">,</span>
+  </CodeLine>,
+  <CodeLine number={6} key={6}>
+    {"  "}
+    <span className="text-danger">location</span>
+    <span className="text-primary-text">: </span>
+    <span className="text-signal">{`'${profile.location}'`}</span>
+    <span className="text-primary-text">,</span>
+  </CodeLine>,
+  <CodeLine number={7} key={7}>
+    {"  "}
+    <span className="text-danger">available</span>
+    <span className="text-primary-text">: </span>
+    <span className="text-warning">
+      {profile.isAvailableForHire ? "true" : "false"}
+    </span>
+    <span className="text-primary-text">,</span>
+  </CodeLine>,
+  <CodeLine number={8} key={8}>
+    <span className="text-primary-text">{"};"}</span>
+  </CodeLine>,
+];
+
 export default function HeroSection() {
-  const profile = {
-    name: "Pedro Campagnoli",
-    role: "QA Engineer",
-    focus: "Test Automation & Quality",
-    background: "Full Stack Developer",
-    location: "Brasil",
-    isAvailableForHire: true,
-  };
+  const reduce = useReducedMotion();
+
   return (
-    <section className="flex min-h-screen w-full flex-col justify-center gap-16 px-4 py-6">
+    <section className="relative isolate flex min-h-screen w-full flex-col justify-center gap-16 px-4 py-6">
+      <HeroBackground />
+
       <div className="flex w-full flex-col items-center justify-between gap-10 text-center md:flex-row">
-        <div className="flex flex-col items-start justify-center gap-6">
-          <SectionLabel file="index.tsx" describe="Home" />
-          <div
-            className="rounded-xl flex items-center p-2 gap-2 
-        border border-border bg-surface hover:border-color-border-strong "
+        <motion.div
+          className="flex flex-col items-start justify-center gap-6"
+          initial={reduce ? false : "hidden"}
+          animate="show"
+          variants={containerVariants(0.09, 0.1)}
+        >
+          <motion.div variants={fadeUp}>
+            <SectionLabel file="index.tsx" describe="Home" />
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            className="rounded-xl flex items-center p-2 gap-2 border border-border bg-surface hover:border-color-border-strong"
           >
             <div className="bg-signal h-2 w-2 rounded-full" />
-            <span className="text-sm">
-              $ qa-engineer --passion=quality --focus=people
-            </span>
-          </div>
+            <TypeLine
+              className="text-sm"
+              text="$ qa-engineer --passion=quality --focus=people"
+            />
+          </motion.div>
 
-          <h1 className="text-foreground font-display font-bold text-5xl md:text-6xl">
+          <motion.h1
+            variants={fadeUp}
+            className="text-foreground font-display font-bold text-5xl md:text-6xl"
+          >
             Pedro Campagnoli
-          </h1>
+          </motion.h1>
 
-          <span className="text-primary text-xl font-medium">
+          <motion.span
+            variants={fadeUp}
+            className="text-primary text-xl font-medium"
+          >
             QA Engineer • Software Quality Assurance
-          </span>
+          </motion.span>
 
-          <p className="text-primary-text text-justify max-w-2xl">
+          <motion.p
+            variants={fadeUp}
+            className="text-primary-text text-justify max-w-2xl"
+          >
             Profissional de Quality Assurance com background em desenvolvimento
             Full Stack. Especializado em testes funcionais, validação de APIs e
             análise de qualidade durante todo o ciclo de desenvolvimento,
             garantindo aplicações estáveis, confiáveis e centradas no usuário.
-          </p>
+          </motion.p>
 
-          <div className="flex gap-4">
-            <span
-              className="text-signal font-mono text-sm p-2 rounded-md
-          border border-border bg-surface hover:border-color-border-strong"
-            >
-              ✓ 6 passed
+          <motion.div variants={fadeUp} className="flex gap-4">
+            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-color-border-strong">
+              ✓ <CountUp to={6} delay={400} /> passed
             </span>
-            <span
-              className="text-signal font-mono text-sm p-2 rounded-md
-          border border-border bg-surface hover:border-color-border-strong"
-            >
+            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-color-border-strong">
               · 0 failed
             </span>
-            <span
-              className="text-signal font-mono text-sm p-2 rounded-md
-          border border-border bg-surface hover:border-color-border-strong"
-            >
+            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-color-border-strong">
               · build: ready
             </span>
-          </div>
+          </motion.div>
 
-          <div className="flex gap-6 flex-wrap justify-center">
+          <motion.div
+            variants={fadeUp}
+            className="flex gap-6 flex-wrap justify-center"
+          >
             <a
               href="#qa-projects"
-              className="text-white font-bold text-sm bg-primary flex items-center gap-2 rounded-2xl px-6 py-4
-                          hover:scale-110 transition-all duration-300"
+              className="text-white font-bold text-sm bg-primary flex items-center gap-2 rounded-2xl px-6 py-4 shadow-lg shadow-transparent transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:shadow-primary/30"
             >
-              Ver Portfólio QA 
+              Ver Portfólio QA
               <FaArrowRight />
             </a>
 
             <a
               href="mailto:dev.pedro.campagnoli@gmail.com"
-              className="
-                flex items-center gap-2
-                rounded-2xl
-                border border-border
-                bg-surface
-                px-6 py-4
-                text-sm text-foreground
-
-                hover:scale-110
-                hover:border-color-border-strong
-
-                transition-transform
-                duration-200
-                ease-out
-              "
+              className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-6 py-4 text-sm text-foreground transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:border-color-border-strong"
             >
               Contato
               <LuMail />
@@ -107,7 +172,7 @@ export default function HeroSection() {
                 aria-label="GitHub"
               >
                 <FaGithub
-                  className="hover:text-primary hover:scale-125 transition-transform"
+                  className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-primary hover:scale-125"
                   size={38}
                 />
               </a>
@@ -119,91 +184,48 @@ export default function HeroSection() {
                 aria-label="LinkedIn"
               >
                 <FaLinkedinIn
-                  className="hover:text-primary hover:scale-125 transition-transform"
+                  className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-primary hover:scale-125"
                   size={38}
                 />
               </a>
 
               <a href="mailto:dev.pedro.campagnoli@gmail.com" aria-label="Email">
                 <LuMail
-                  className="hover:text-primary hover:scale-125 transition-transform"
+                  className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-primary hover:scale-125"
                   size={38}
                 />
               </a>
             </div>
-          </div>
+          </motion.div>
+        </motion.div>
 
-        </div>
+        <motion.div
+          initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        >
+          <DevCard label="developer.ts">
+            <div className="flex flex-col">
+              <div className="flex justify-center px-6 py-6">
+                <Image
+                  width={200}
+                  height={200}
+                  src="https://github.com/Pedro-Campagnoli.png"
+                  alt="Pedro Campagnoli"
+                  className="h-32 w-32 rounded-full border-2 border-border"
+                />
+              </div>
 
-        <DevCard label="developer.ts">
-          <div className="flex flex-col">
-            <div className="flex justify-center px-6 py-6">
-              <Image
-                width={200}
-                height={200}
-                src="https://github.com/Pedro-Campagnoli.png"
-                alt="Pedro Campagnoli"
-                className="h-32 w-32 rounded-full border-2 border-border"
+              <CodeStream
+                className="overflow-x-auto px-4 pb-6 text-left leading-6"
+                lines={codeLines}
+                startDelay={0.7}
               />
             </div>
-
-            <div className="overflow-x-auto px-4 pb-6 text-left leading-6">
-              <CodeLine number={1}>
-                <span className="text-primary">const</span>{" "}
-                <span className="text-info">developer</span>
-                <span className="text-primary-text "> = {"{"}</span>
-              </CodeLine>
-              <CodeLine number={2}>
-                {"  "}
-                <span className="text-danger">name</span>
-                <span className="text-primary-text">: </span>
-                <span className="text-signal">{`'${profile.name}'`}</span>
-                <span className="text-primary-text">,</span>
-              </CodeLine>
-              <CodeLine number={3}>
-                {"  "}
-                <span className="text-danger">role</span>
-                <span className="text-primary-text">: </span>
-                <span className="text-signal">{`'${profile.role}'`}</span>
-                <span className="text-primary-text">,</span>
-              </CodeLine>
-              <CodeLine number={4}>
-                {"  "}
-                <span className="text-danger">focus</span>
-                <span className="text-primary-text">: </span>
-                <span className="text-signal">{`'${profile.focus}'`}</span>
-                <span className="text-primary-text">,</span>
-              </CodeLine>
-              <CodeLine number={5}>
-                {"  "}
-                <span className="text-danger">background</span>
-                <span className="text-primary-text">: </span>
-                <span className="text-signal">{`'${profile.background}'`}</span>
-                <span className="text-primary-text">,</span>
-              </CodeLine>
-              <CodeLine number={6}>
-                {"  "}
-                <span className="text-danger">location</span>
-                <span className="text-primary-text">: </span>
-                <span className="text-signal">{`'${profile.location}'`}</span>
-                <span className="text-primary-text">,</span>
-              </CodeLine>
-              <CodeLine number={7}>
-                {"  "}
-                <span className="text-danger">available</span>
-                <span className="text-primary-text">: </span>
-                <span className="text-warning">
-                  {profile.isAvailableForHire ? "true" : "false"}
-                </span>
-                <span className="text-primary-text">,</span>
-              </CodeLine>
-              <CodeLine number={8}>
-                <span className="text-primary-text">{"};"}</span>
-              </CodeLine>
-            </div>
-          </div>
-        </DevCard>
+          </DevCard>
+        </motion.div>
       </div>
+
       <TechStack />
     </section>
   );
