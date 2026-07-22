@@ -13,7 +13,9 @@ export default function ThemeToggle() {
       setTheme(savedTheme);
       document.documentElement.classList.toggle("dark", savedTheme === "dark");
     } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       setTheme(prefersDark ? "dark" : "light");
       document.documentElement.classList.toggle("dark", prefersDark);
     }
@@ -30,7 +32,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-3 border-2 border-foreground/50 rounded-[50%] bg-background text-background transition-colors"
+      className="p-2 border border-foreground/50 text-sm rounded-[50%] bg-background text-background transition-colors"
     >
       {theme === "dark" ? "☀️ " : "🌙 "}
     </button>

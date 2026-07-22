@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
@@ -29,17 +29,21 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md text-primary-text flex items-center justify-around p-8 z-50 transition-all duration-300 ease-in-out ${scrolled ? "shadow-md border-b border-primary-text" : ""}`}>
-      <h1 className="text-2xl font-display font-bold">Pedro Campagnoli</h1>
+    <header
+      className={`fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md text-primary-text flex items-center justify-around px-4 py-2 z-50 transition-all duration-300 ease-in-out ${scrolled ? "shadow-md border-b border-primary-text" : ""}`}
+    >
+      <h1 className="text-xl font-display font-bold">Pedro Campagnoli</h1>
 
       <div className="hidden md:flex gap-10">
         {Links.map((link) => (
-            <a
-            className="hover:brightness-150 dark:hover:brightness-80 transition-all duration-300"
-            href={link.href} key={link.href}>{link.label}
-            </a>
-          ))
-        }
+          <a
+            className="hover:brightness-15 text-sm 0 dark:hover:brightness-80 transition-all duration-300"
+            href={link.href}
+            key={link.href}
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
       <ThemeToggle />
     </header>
