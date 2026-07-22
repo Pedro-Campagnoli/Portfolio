@@ -4,6 +4,15 @@ import { LuMail } from "react-icons/lu";
 import AboutCards from "./_components/AboutCards";
 import IconsList from "./_components/IconsList";
 
+function SectionLabel({ file, describe }: { file: string; describe: string }) {
+  return (
+    <div className="text-primary-text font-mono text-xs leading-relaxed">
+      <p>{file}</p>
+      <p>{`describe('${describe}', () => {`}</p>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="flex flex-col items-center">
@@ -11,11 +20,11 @@ export default function Home() {
       {/* HERO */}
       <header className="flex flex-col items-center justify-center min-h-screen gap-10 text-center px-4">
 
-        <h1 className="text-foreground font-bold text-5xl md:text-6xl">
+        <h1 className="text-foreground font-display font-bold text-5xl md:text-6xl">
           Pedro Campagnoli
         </h1>
 
-        <span className="text-primary text-xl font-medium brightness-200">
+        <span className="text-primary text-xl font-medium">
           QA Engineer • Software Quality Assurance
         </span>
 
@@ -24,6 +33,10 @@ export default function Home() {
           Especializado em testes funcionais, validação de APIs e análise de qualidade
           durante todo o ciclo de desenvolvimento, garantindo aplicações estáveis,
           confiáveis e centradas no usuário.
+        </p>
+
+        <p className="text-signal font-mono text-sm">
+          ✓ 6 passed · 0 failed · build: ready
         </p>
 
         {/* CTA */}
@@ -81,9 +94,9 @@ export default function Home() {
       >
         <div className="flex flex-col gap-6 max-w-xl">
 
-          <span className="text-primary">/ / Sobre mim</span>
+          <SectionLabel file="sobre.spec.ts" describe="Sobre mim" />
 
-          <h2 className="text-foreground font-semibold text-3xl">
+          <h2 className="text-foreground font-display font-semibold text-3xl">
             Um pouco sobre mim
           </h2>
 
@@ -121,16 +134,34 @@ export default function Home() {
 
         <AboutCards />
       </section>
-      <IconsList />
+
+      {/* SKILLS */}
+      <section
+        id="skills"
+        className="w-full py-24 flex flex-col items-center gap-10 px-6"
+      >
+        <SectionLabel file="skills.spec.ts" describe="Skills" />
+
+        <h2 className="text-foreground font-display font-semibold text-3xl">
+          Stack e ferramentas
+        </h2>
+
+        <IconsList />
+      </section>
 
       {/* QA PROJECTS */}
       <section
         id="qa-projects"
-        className="w-full py-24 flex flex-col items-center"
+        className="w-full py-24 flex flex-col items-center px-6"
       >
-        <h2 className="text-foreground text-3xl font-semibold mb-10">
-          QA Portfolio
-        </h2>
+        <SectionLabel file="qa-portfolio.spec.ts" describe="QA Portfolio" />
+
+        <div className="flex items-center gap-3 mt-2 mb-10">
+          <h2 className="text-foreground font-display font-semibold text-3xl">
+            QA Portfolio
+          </h2>
+          <span className="text-signal font-mono text-xs">{`// em construção`}</span>
+        </div>
 
         <p className="text-primary-text max-w-2xl text-center">
           Projetos focados em Quality Assurance incluindo testes funcionais,
