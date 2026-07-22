@@ -47,16 +47,16 @@ export default function ExperienceSection() {
                   index !== experience.length - 1 ? "border-b" : ""
                 }`}
               >
-                <span className="text-signal font-mono text-xs">
+                <span className="text-signal font-mono text-[10px] md:text-xs">
                   {item.period}
                 </span>
-                <h3 className="text-foreground text-lg font-semibold">
+                <h3 className="text-foreground text-sm md:text-xl font-semibold">
                   {item.role}{" "}
                   <span className="text-primary-text font-normal">
                     · {item.company}
                   </span>
                 </h3>
-                <p className="text-primary-text text-sm">{item.description}</p>
+                <p className="text-primary-text text-xs">{item.description}</p>
               </RevealItem>
             ))}
           </Reveal>
@@ -68,8 +68,8 @@ export default function ExperienceSection() {
           <SectionLabel file="qa-portfolio.spec.ts" describe="QA Portfolio" />
           <DevCard label="qa-portfolio.ts">
             <div className="flex flex-col items-center gap-4">
-              <span className="text-signal text-justify w-full font-mono text-xs">{`// em construção`}</span>
-              <p className="text-primary-text max-w-2xl text-justify">
+              <span className="text-signal text-justify w-full font-mono text-[10px] md:text-xs">{`// em construção`}</span>
+              <p className="text-primary-text max-w-2xl text-xs md:text-sm md:text-justify">
                 Projetos focados em Quality Assurance incluindo testes
                 funcionais, validação de APIs, documentação de bugs e práticas de
                 qualidade aplicadas em aplicações reais.

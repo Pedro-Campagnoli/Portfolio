@@ -86,45 +86,45 @@ export default function HeroSection() {
     <section className="relative isolate flex min-h-screen max-w-screen w-full flex-col justify-center gap-16 px-6 py-6">
       <HeroBackground />
 
-      <div className="flex w-full flex-col items-center justify-between gap-10 text-center md:flex-row">
+      <div className="flex w-full flex-col items-start justify-between gap-10 text-center md:flex-row">
         <motion.div
-          className="flex flex-col items-start justify-center gap-6"
+          className="flex min-w-0 flex-col items-start justify-center gap-6"
           initial={reduce ? false : "hidden"}
           animate="show"
           variants={containerVariants(0.09, 0.1)}
         >
           <motion.div variants={fadeUp}>
-            <SectionLabel file="index.tsx" describe="Home" />
+            <SectionLabel file="index.ts" describe="Home" />
           </motion.div>
 
           <motion.div
             variants={fadeUp}
-            className="rounded-xl flex  mx-auto md:mx-0 items-center p-2 gap-2 border border-border bg-surface hover:border-border-strong"
+            className="rounded-xl flex md:mx-0 items-center p-2 gap-2 border border-border bg-surface hover:border-border-strong"
           >
-            <div className="bg-signal h-2 w-2 rounded-full" />
+            <div className="bg-signal h-1.5 w-1.5 md:h-2 md:w-2 rounded-full" />
             <TypeLine
-              className="text-sm"
+              className="text-xs md:text-sm"
               text="$ qa-engineer --passion=quality --focus=people"
             />
           </motion.div>
 
           <motion.h1
             variants={fadeUp}
-            className="text-foreground font-display font-bold text-5xl md:text-6xl"
+            className="text-foreground font-display text-start w-full md:text-start font-bold text-4xl md:text-6xl"
           >
             Pedro Campagnoli
           </motion.h1>
 
           <motion.span
             variants={fadeUp}
-            className="text-primary text-xl font-medium"
+            className="text-primary text-base md:text-xl font-medium text-start w-full md:text-start"
           >
             QA Engineer • Software Quality Assurance
           </motion.span>
 
           <motion.p
             variants={fadeUp}
-            className="text-primary-text text-justify max-w-2xl"
+            className="text-primary-text text-start md:text-justify max-w-2xl text-sm md:text-base"
           >
             Profissional de Quality Assurance com background em desenvolvimento
             Full Stack. Especializado em testes funcionais, validação de APIs e
@@ -133,13 +133,13 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex gap-4 mx-auto md:mx-0">
-            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-border-strong">
+            <span className="text-signal font-mono text-[10px] md:text-sm p-2 rounded-xl border border-border bg-surface hover:border-border-strong">
               ✓ <CountUp to={6} delay={400} /> passed
             </span>
-            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-border-strong">
+            <span className="text-signal font-mono text-[10px] md:text-sm p-2 rounded-xl border border-border bg-surface hover:border-border-strong">
               · 0 failed
             </span>
-            <span className="text-signal font-mono text-sm p-2 rounded-md border border-border bg-surface hover:border-border-strong">
+            <span className="text-signal font-mono text-[10px] md:text-sm p-2 rounded-xl border border-border bg-surface hover:border-border-strong">
               · build: ready
             </span>
           </motion.div>
@@ -150,7 +150,7 @@ export default function HeroSection() {
           >
             <a
               href="#qa-projects"
-              className="text-white font-bold text-sm bg-primary flex items-center gap-2 rounded-2xl px-6 py-4 shadow-lg shadow-transparent transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:shadow-primary/30"
+              className="text-white font-bold text-[10px] md:text-sm bg-primary flex items-center gap-2 rounded-2xl px-6 py-4 shadow-lg shadow-transparent transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:shadow-primary/30"
             >
               Ver Portfólio QA
               <FaArrowRight />
@@ -158,7 +158,7 @@ export default function HeroSection() {
 
             <a
               href="mailto:dev.pedro.campagnoli@gmail.com"
-              className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-6 py-4 text-sm text-foreground transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:border-border-strong"
+              className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-6 py-4 text-[10px] md:text-sm text-foreground transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:border-border-strong"
             >
               Contato
               <LuMail />
@@ -200,12 +200,13 @@ export default function HeroSection() {
         </motion.div>
 
         <motion.div
+          className="w-full min-w-0 max-w-md"
           initial={reduce ? false : { opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
         >
           <DevCard label="developer.ts">
-            <div className="flex flex-col ">
+            <div className="flex w-full min-w-0 flex-col">
               <div className="flex justify-center py-6">
                 <Image
                   width={200}
@@ -217,7 +218,7 @@ export default function HeroSection() {
               </div>
 
               <CodeStream
-                className="overflow-x-auto px-4 pb-6 text-left leading-6"
+                className="w-full min-w-0 text-xs md:text-sm px-4 pb-6 text-left leading-6"
                 lines={codeLines}
                 startDelay={0.7}
               />
@@ -243,7 +244,7 @@ function CodeLine({
       <span className="w-8 shrink-0 select-none pr-4 text-right text-gray-600">
         {number}
       </span>
-      <span className="whitespace-pre">{children}</span>
+      <span className="min-w-0 whitespace-pre-wrap">{children}</span>
     </div>
   );
 }

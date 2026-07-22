@@ -6,7 +6,7 @@ import HeroSection from "./_components/HeroSection";
 
 export default function Home() {
   return (
-    <main className="flex flex-col max-w-7xl">
+    <main className="flex w-full max-w-7xl flex-col">
       <HeroSection />
 
       <hr className="border-t border-border my-12" />

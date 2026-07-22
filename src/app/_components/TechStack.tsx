@@ -48,7 +48,7 @@ function TechItem({ tech }: { tech: Tech }) {
         unoptimized
         className="h-10 w-10 object-contain transition-transform duration-200 group-hover:-translate-y-1"
       />
-      <span className="text-primary-text text-center text-xs">
+      <span className="text-primary-text text-center text-[10px] md:text-xs">
         {tech.title}
       </span>
     </div>
@@ -95,11 +95,11 @@ export default function TechStack() {
     <div className="border-border bg-surface overflow-hidden w-full rounded-2xl border">
       <div className="mb-2 flex items-center">
         <div className="flex items-center justify-between gap-2 border-b border-border w-full bg-card-header-background px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-danger" />
-            <span className="h-3 w-3 rounded-full bg-warning" />
-            <span className="h-3 w-3 rounded-full bg-success" />
-            <span className="ml-2 select-none text-xs text-primary-text ">
+          <div className="flex items-center gap-1.5 md:gap-2">
+            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-danger" />
+            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-warning" />
+            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-success" />
+            <span className="ml-0.5 select-none text-[10px] md:text-sm text-primary-text ">
               stacks.ts
             </span>
           </div>
@@ -109,7 +109,7 @@ export default function TechStack() {
               onClick={() => setExpanded((prev) => !prev)}
               aria-expanded={expanded}
               aria-controls="tech-grid"
-              className="text-primary flex items-center gap-1 text-sm font-medium transition-opacity hover:opacity-80"
+              className="text-primary flex items-center gap-1 text-[10px] md:text-md font-medium transition-opacity hover:opacity-80"
             >
               {expanded ? "Ver menos" : "Ver mais"}
               <LuChevronDown

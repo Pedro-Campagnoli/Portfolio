@@ -28,7 +28,7 @@ const highlights = [
 
 export default function AboutCards() {
   return (
-    <div className="grid grid-cols-2 gap-4 max-w-lg">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg px-8 md:px-0">
       {highlights.map((item) => (
         <div
           key={item.title}

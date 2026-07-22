@@ -18,11 +18,11 @@ export default function AboutSection() {
       <Reveal as="div" className="flex flex-col gap-6 max-w-xl">
         <SectionLabel file="sobre.spec.ts" describe="Sobre mim" />
 
-        <h2 className="text-foreground font-display font-semibold text-3xl">
+        <h2 className="text-foreground font-display font-semibold text-2xl md:text-3xl">
           Um pouco sobre mim
         </h2>
 
-        <div className="text-primary-text space-y-4 text-justify">
+        <div className="text-primary-text space-y-4 md:text-justify text-xs md:text-sm">
           <p>
             Sou um profissional de tecnologia com background em desenvolvimento
             Full Stack e crescente especialização em Quality Assurance.
