@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import Cypress from "@/public/icons/cypress.svg";
 import Jest from "@/public/icons/jest.svg";
@@ -18,7 +18,9 @@ import ReactIcon from "@/public/icons/react.svg";
 import Tailwind from "@/public/icons/tailwind.svg";
 import Typescript from "@/public/icons/typescript.svg";
 
-const qaIcons = [
+type IconItem = { icon: StaticImageData; title: string };
+
+const qaIcons: IconItem[] = [
   { icon: Postman, title: "Postman" },
   { icon: Playwright, title: "Playwright" },
   { icon: Cypress, title: "Cypress" },
@@ -28,7 +30,7 @@ const qaIcons = [
   { icon: Sql, title: "SQL" },
 ];
 
-const devIcons = [
+const devIcons: IconItem[] = [
   { icon: ReactIcon, title: "React" },
   { icon: Next, title: "Next.js" },
   { icon: Node, title: "Node" },
@@ -40,42 +42,32 @@ const devIcons = [
   { icon: Tailwind, title: "Tailwind" },
 ];
 
-function IconGroup({ title, icons }) {
+function IconGroup({ title, icons }: { title: string; icons: IconItem[] }) {
   return (
     <div className="flex flex-col gap-3">
-      <span className="text-sm text-primary font-semibold">
+      <span className="text-primary font-mono text-sm font-semibold">
         {title}
       </span>
 
-      <div className="
-        flex
-        gap-3
-        bg-white
-        border
-        border-foreground
-        rounded-xl
-        p-4
-        w-fit
-      ">
+      <ul className="border-primary-text/20 bg-primary/5 flex flex-col gap-2 rounded-lg border p-4">
         {icons.map((item) => (
-          <Image
+          <li
             key={item.title}
-            src={item.icon}
-            alt={item.title}
-            width={28}
-            height={28}
-            title={item.title}
-            className="hover:scale-110 transition-all"
-          />
+            className="text-foreground flex items-center gap-3 text-sm"
+          >
+            <span className="text-signal font-mono">✓</span>
+            <Image src={item.icon} alt="" width={20} height={20} className="opacity-90" />
+            <span>{item.title}</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
 export default function IconList() {
   return (
-    <div className="flex  gap-6">
+    <div className="flex flex-col gap-6 sm:flex-row">
       <IconGroup title="🧪 Quality Assurance" icons={qaIcons} />
       <IconGroup title="💻 Development" icons={devIcons} />
     </div>
