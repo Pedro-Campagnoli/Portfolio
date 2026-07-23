@@ -96,9 +96,9 @@ export default function TechStack() {
       <div className="mb-2 flex items-center">
         <div className="flex items-center justify-between gap-2 border-b border-border w-full bg-card-header-background px-4 py-3">
           <div className="flex items-center gap-1.5 md:gap-2">
-            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-danger" />
-            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-warning" />
-            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-success" />
+            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-danger hover:scale-125 transition-transform duration-100" />
+            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-warning hover:scale-125 transition-transform duration-100" />
+            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-success hover:scale-125 transition-transform duration-100" />
             <span className="ml-0.5 select-none text-[10px] md:text-sm text-primary-text ">
               stacks.ts
             </span>
