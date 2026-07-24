@@ -149,7 +149,7 @@ export default function HeroSection() {
             className="flex gap-6 flex-wrap justify-center"
           >
             <a
-              href="#qa-projects"
+              href="#experience"
               className="text-white font-bold text-[10px] md:text-sm bg-primary flex items-center gap-2 rounded-2xl px-6 py-4 shadow-lg shadow-transparent transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:shadow-primary/30"
             >
               Ver Portfólio QA
