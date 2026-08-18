@@ -13,20 +13,21 @@ type Tech = { icon: string; title: string };
 // Icons live in /public/icons and are referenced by URL — drop a new .svg in
 // that folder and add an entry here, no import needed.
 const technologies: Tech[] = [
-  { icon: "/icons/playwright.svg", title: "Playwright" },
-  { icon: "/icons/cypress.svg", title: "Cypress" },
-  { icon: "/icons/jest.svg", title: "Jest" },
-  { icon: "/icons/selenium.svg", title: "Selenium" },
-  { icon: "/icons/postman.svg", title: "Postman" },
-  { icon: "/icons/nest.svg", title: "Nest.js" },
-  { icon: "/icons/react.svg", title: "React" },
   { icon: "/icons/node.svg", title: "Node.js" },
   { icon: "/icons/typescript.svg", title: "TypeScript" },
+  { icon: "/icons/nest.svg", title: "Nest.js" },
   { icon: "/icons/javascript.svg", title: "JavaScript" },
-  { icon: "/icons/html.svg", title: "HTML" },
   { icon: "/icons/sql.svg", title: "SQL" },
-  { icon: "/icons/git.svg", title: "Git" },
   { icon: "/icons/docker.svg", title: "Docker" },
+  { icon: "/icons/git.svg", title: "Git" },
+  { icon: "/icons/react.svg", title: "React" },
+  { icon: "/icons/next.png", title: "Next.js" },
+  { icon: "/icons/html.svg", title: "HTML" },
+  { icon: "/icons/postman.svg", title: "Postman" },
+  { icon: "/icons/jest.svg", title: "Jest" },
+  { icon: "/icons/playwright.svg", title: "Playwright" },
+  { icon: "/icons/cypress.svg", title: "Cypress" },
+  { icon: "/icons/selenium.svg", title: "Selenium" },
 ];
 
 // Icons kept while collapsed = one grid row. The grid reflows (4 cols on

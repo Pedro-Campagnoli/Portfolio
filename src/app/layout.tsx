@@ -22,9 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pedro Campagnoli — QA Engineer",
+  title: "Pedro Campagnoli — Backend Developer",
   description:
-    "Portfolio de Pedro Campagnoli, profissional de Quality Assurance com background em desenvolvimento Full Stack.",
+    "Portfólio de Pedro Campagnoli, desenvolvedor de software focado em back-end com Node.js, TypeScript e NestJS, APIs REST, integrações e bancos relacionais.",
 };
 
 export default function RootLayout({

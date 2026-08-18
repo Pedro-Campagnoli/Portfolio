@@ -4,56 +4,91 @@ import SectionLabel from "./SectionLabel";
 
 export default function AboutSection() {
   const focus = [
-    "Automação E2E & Componentes: Projetos avançados com Playwright/TypeScript aplicando padrões como Page Object Model (POM), Component Objects e Data-Driven Testing (DDT).",
-    "Design Patterns em Testes: Criação de Test Runners/Factories dinâmicos, abstração de API Helpers para preparação rápida de estado/massa de dados e setups avançados de autenticação global.",
-    "Testes de API & Banco de Dados: Validações de endpoints (Postman/Requests) e dados via SQL.",
-    "Qualidade Shift-Left: Atuação em todo o ciclo de vida do desenvolvimento (SDLC), garantindo que a qualidade seja construída desde a concepção do requisito até o deploy.",
+    {
+      title: "Back-end e APIs",
+      description:
+        "Node.js, TypeScript e NestJS em arquitetura modular, com APIs REST, integração com serviços externos e tratamento de dados.",
+    },
+    {
+      title: "Dados e persistência",
+      description:
+        "PostgreSQL, MySQL e SQLite com Prisma ORM: modelagem, consultas SQL e manutenção de regras já existentes no banco.",
+    },
+    {
+      title: "Ambientes e ferramentas",
+      description:
+        "Docker nos ambientes de desenvolvimento, Git no controle de versão e Jira / Azure DevOps no acompanhamento do fluxo de trabalho.",
+    },
+    {
+      title: "Qualidade no desenvolvimento",
+      description:
+        "Testes funcionais, testes de API com Postman e automação E2E com Playwright e Cypress, aplicados para entregar código mais confiável.",
+    },
+    {
+      title: "Processo e IA",
+      description:
+        "Spec-Driven Development e uso de agentes como Claude Code e Codex para organizar e acelerar o ciclo de desenvolvimento.",
+    },
   ];
 
   return (
     <section
       id="about"
-      className="w-full flex flex-col lg:flex-row justify-center items-center gap-20 py-12 px-6"
+      className="w-full flex flex-col lg:flex-row justify-center items-center gap-20 py-12 px-6 lg:items-stretch"
     >
-      <Reveal as="div" className="flex flex-col gap-6 max-w-xl">
+      <Reveal as="div" className="flex max-w-lg flex-col gap-6">
         <SectionLabel file="about.spec.ts" describe="Sobre mim" />
 
         <h2 className="text-foreground font-display font-semibold text-2xl md:text-3xl">
           Um pouco sobre mim
         </h2>
 
-        <div className="text-primary-text space-y-4 md:text-justify text-xs md:text-sm">
+        <div className="text-primary-text space-y-5 text-left text-xs md:text-sm">
           <p>
-            Sou um QA Engineer / SDET com background em desenvolvimento Full Stack,
-            focado em construir arquiteturas de automação de testes escaláveis, limpas 
-            e de alta manutenibilidade.
+            Sou desenvolvedor de software, formado em Análise e Desenvolvimento
+            de Sistemas, com foco em back-end e no ecossistema Node.js. Construo
+            APIs e aplicações com TypeScript e NestJS em arquitetura modular,
+            pensando em organização, escalabilidade e manutenção.
           </p>
 
           <p>
-            Minha vivência como desenvolvedor me permite entender a fundo 
-            a arquitetura de software, facilitando o rastreio de causa-raiz de bugs 
-            e encurtando a ponte entre os times de desenvolvimento e produto.
+            Na minha atuação profissional trabalho com PHP no desenvolvimento de
+            soluções para e-commerce e sistemas corporativos, incluindo projetos
+            de força de vendas integrados a ERPs. Isso me coloca em contato
+            diário com regras de negócio reais, integrações entre sistemas e a
+            evolução de aplicações que rodam em produção.
           </p>
 
-          <p>Minhas principais especialidades e boas práticas:</p>
+          <p className="font-medium text-foreground">
+            Minhas principais áreas de atuação:
+          </p>
 
-          <Reveal as="ul" className="space-y-1" stagger={0.07}>
+          <Reveal as="ul" className="space-y-4" stagger={0.07}>
             {focus.map((item) => (
-              <RevealItem as="li" key={item}>
-                • {item}
+              <RevealItem
+                as="li"
+                key={item.title}
+                className="border-l-2 border-primary/40 pl-4"
+              >
+                <h3 className="font-medium text-foreground">{item.title}</h3>
+                <p className="mt-1 leading-relaxed">{item.description}</p>
               </RevealItem>
             ))}
           </Reveal>
 
           <p>
-            Acredito que automação de testes de verdade vai além de simplesmente &quot;clicar em botões via 
-            código&quot;: trata-se de aplicar engenharia de software para garantir entregas rápidas, confiáveis 
-            e centradas no usuário.
+            Acredito que desenvolver software vai além de fazer a funcionalidade
+            rodar: é entender o problema, modelar bem os dados e deixar o código
+            organizado o suficiente para que a próxima pessoa consiga evoluir o
+            sistema com segurança.
           </p>
         </div>
       </Reveal>
 
-      <Reveal delay={0.1}>
+      <Reveal
+        delay={0.1}
+        className="flex w-full max-w-2xl items-center lg:self-stretch"
+      >
         <AboutCards />
       </Reveal>
     </section>

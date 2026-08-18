@@ -17,65 +17,69 @@ import TechStack from "./TechStack";
 
 const profile = {
   name: "Pedro Campagnoli",
-  role: "QA Engineer",
-  focus: "Test Automation & Quality",
+  role: "Backend Developer",
+  focus: "Node.js, TypeScript & NestJS",
   background: "Full Stack Developer",
-  location: "Brasil",
+  location: "Cianorte, PR - Brasil",
   isAvailableForHire: true,
 };
 
 const codeLines: ReactNode[] = [
   <CodeLine number={1} key={1}>
-    <span className="text-primary">const</span>{" "}
-    <span className="text-info">developer</span>
-    <span className="text-primary-text "> = {"{"}</span>
+    <span style={{ color: "var(--code-keyword)" }}>const</span>{" "}
+    <span style={{ color: "var(--code-variable)" }}>developer</span>
+    <span style={{ color: "var(--code-punctuation)" }}>{" = {"}</span>
   </CodeLine>,
   <CodeLine number={2} key={2}>
     {"  "}
-    <span className="text-danger">name</span>
-    <span className="text-primary-text">: </span>
-    <span className="text-signal">{`'${profile.name}'`}</span>
-    <span className="text-primary-text">,</span>
+    <span style={{ color: "var(--code-property)" }}>name</span>
+    <span style={{ color: "var(--code-punctuation)" }}>: </span>
+    <span style={{ color: "var(--code-string)" }}>{`'${profile.name}'`}</span>
+    <span style={{ color: "var(--code-punctuation)" }}>,</span>
   </CodeLine>,
   <CodeLine number={3} key={3}>
     {"  "}
-    <span className="text-danger">role</span>
-    <span className="text-primary-text">: </span>
-    <span className="text-signal">{`'${profile.role}'`}</span>
-    <span className="text-primary-text">,</span>
+    <span style={{ color: "var(--code-property)" }}>role</span>
+    <span style={{ color: "var(--code-punctuation)" }}>: </span>
+    <span style={{ color: "var(--code-string)" }}>{`'${profile.role}'`}</span>
+    <span style={{ color: "var(--code-punctuation)" }}>,</span>
   </CodeLine>,
   <CodeLine number={4} key={4}>
     {"  "}
-    <span className="text-danger">focus</span>
-    <span className="text-primary-text">: </span>
-    <span className="text-signal">{`'${profile.focus}'`}</span>
-    <span className="text-primary-text">,</span>
+    <span style={{ color: "var(--code-property)" }}>focus</span>
+    <span style={{ color: "var(--code-punctuation)" }}>: </span>
+    <span style={{ color: "var(--code-string)" }}>{`'${profile.focus}'`}</span>
+    <span style={{ color: "var(--code-punctuation)" }}>,</span>
   </CodeLine>,
   <CodeLine number={5} key={5}>
     {"  "}
-    <span className="text-danger">background</span>
-    <span className="text-primary-text">: </span>
-    <span className="text-signal">{`'${profile.background}'`}</span>
-    <span className="text-primary-text">,</span>
+    <span style={{ color: "var(--code-property)" }}>background</span>
+    <span style={{ color: "var(--code-punctuation)" }}>: </span>
+    <span style={{ color: "var(--code-string)" }}>
+      {`'${profile.background}'`}
+    </span>
+    <span style={{ color: "var(--code-punctuation)" }}>,</span>
   </CodeLine>,
   <CodeLine number={6} key={6}>
     {"  "}
-    <span className="text-danger">location</span>
-    <span className="text-primary-text">: </span>
-    <span className="text-signal">{`'${profile.location}'`}</span>
-    <span className="text-primary-text">,</span>
+    <span style={{ color: "var(--code-property)" }}>location</span>
+    <span style={{ color: "var(--code-punctuation)" }}>: </span>
+    <span style={{ color: "var(--code-string)" }}>
+      {`'${profile.location}'`}
+    </span>
+    <span style={{ color: "var(--code-punctuation)" }}>,</span>
   </CodeLine>,
   <CodeLine number={7} key={7}>
     {"  "}
-    <span className="text-danger">available</span>
-    <span className="text-primary-text">: </span>
-    <span className="text-warning">
+    <span style={{ color: "var(--code-property)" }}>available</span>
+    <span style={{ color: "var(--code-punctuation)" }}>: </span>
+    <span style={{ color: "var(--code-boolean)" }}>
       {profile.isAvailableForHire ? "true" : "false"}
     </span>
-    <span className="text-primary-text">,</span>
+    <span style={{ color: "var(--code-punctuation)" }}>,</span>
   </CodeLine>,
   <CodeLine number={8} key={8}>
-    <span className="text-primary-text">{"};"}</span>
+    <span style={{ color: "var(--code-punctuation)" }}>{"};"}</span>
   </CodeLine>,
 ];
 
@@ -86,9 +90,9 @@ export default function HeroSection() {
     <section className="relative isolate flex min-h-screen max-w-screen w-full flex-col justify-center gap-16 px-6 py-6">
       <HeroBackground />
 
-      <div className="flex w-full flex-col items-start justify-between gap-10 text-center md:flex-row">
+      <div className="flex w-full flex-col items-start justify-between gap-10 text-center lg:flex-row">
         <motion.div
-          className="flex min-w-0 flex-col items-start justify-center gap-6"
+          className="order-2 mx-auto flex min-w-0 flex-col items-start justify-center gap-6 lg:order-1 lg:mx-0"
           initial={reduce ? false : "hidden"}
           animate="show"
           variants={containerVariants(0.09, 0.1)}
@@ -104,7 +108,7 @@ export default function HeroSection() {
             <div className="bg-signal h-1.5 w-1.5 md:h-2 md:w-2 rounded-full" />
             <TypeLine
               className="text-xs md:text-sm"
-              text="$ qa-engineer --passion=quality --focus=people"
+              text="$ backend-dev --stack=node --focus=apis"
             />
           </motion.div>
 
@@ -119,17 +123,18 @@ export default function HeroSection() {
             variants={fadeUp}
             className="text-primary text-base md:text-xl font-medium text-start w-full md:text-start"
           >
-            QA Engineer • Software Quality Assurance
+            Backend Developer • Node.js • TypeScript • NestJS
           </motion.span>
 
           <motion.p
             variants={fadeUp}
-            className="text-primary-text text-start md:text-justify max-w-2xl text-sm md:text-base"
+            className="text-primary-text max-w-2xl text-start text-sm leading-relaxed text-pretty md:text-base"
           >
-            Profissional de Quality Assurance com background em desenvolvimento
-            Full Stack. Especializado em testes funcionais, validação de APIs e
-            análise de qualidade durante todo o ciclo de desenvolvimento,
-            garantindo aplicações estáveis, confiáveis e centradas no usuário.
+            Desenvolvedor de software com foco em back-end e no ecossistema
+            Node.js. Construo APIs e aplicações com TypeScript e NestJS em
+            arquitetura modular, trabalhando com bancos relacionais, Docker e
+            integrações entre sistemas, sempre com atenção a código organizado,
+            testável e fácil de manter.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex gap-4 mx-auto md:mx-0">
@@ -152,7 +157,7 @@ export default function HeroSection() {
               href="#experience"
               className="text-white font-bold text-[10px] md:text-sm bg-primary flex items-center gap-2 rounded-2xl px-6 py-4 shadow-lg shadow-transparent transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:shadow-primary/30"
             >
-              Ver Portfólio QA
+              Ver Experiência
               <FaArrowRight />
             </a>
 
@@ -189,7 +194,10 @@ export default function HeroSection() {
                 />
               </a>
 
-              <a href="mailto:dev.pedro.campagnoli@gmail.com" aria-label="Email">
+              <a
+                href="mailto:dev.pedro.campagnoli@gmail.com"
+                aria-label="Email"
+              >
                 <LuMail
                   className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-primary hover:scale-125"
                   size={38}
@@ -200,7 +208,7 @@ export default function HeroSection() {
         </motion.div>
 
         <motion.div
-          className="w-full min-w-0 max-w-md"
+          className="order-1 mx-auto w-full min-w-0 max-w-md lg:order-2 lg:mx-0"
           initial={reduce ? false : { opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}

@@ -4,7 +4,7 @@ export default function ContactSection() {
   return (
     <div className="flex flex-col items-center gap-8 text-center">
       <p className="text-primary-text max-w-md">
-        Aberto a oportunidades em Quality Assurance e desenvolvimento.
+        Aberto a oportunidades como desenvolvedor back-end e full stack.
         Entre em contato pelo e-mail ou pelas redes abaixo.
       </p>
 

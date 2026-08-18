@@ -12,13 +12,15 @@ type ExperienceEntry = {
 const experience: ExperienceEntry[] = [
   {
     period: "2025 — atual",
-    role: "QA Engineer / SDET",
+    role: "Desenvolvedor de Software | Analista de Suporte",
     company: "Grupo DBM",
     description: [
-      "Desenvolvimento & Manutenção: Implementação de regras de negócio, correções e melhorias utilizando PHP (Zend Framework), JS, HTML5 e CSS.",
-      "Arquitetura de Automação: Criação da suíte de testes E2E do zero com Playwright e TypeScript (POM, Component Objects e DDT).",
-      "Controle de Estado & APIs: Helpers de API para chaveamento de permissões no backend e execução de testes isolada/paralela.",
-      "Investigação Causa-Raiz: Análise de bugs no código fonte e banco de dados, atuando como ponte técnica entre Dev e Produto."
+      "Desenvolvimento & Manutenção: Implementação de novas funcionalidades, regras de negócio e evolução de aplicações web em PHP, JavaScript, HTML5 e CSS.",
+      "E-commerce: Desenvolvimento de páginas, funcionalidades administrativas e integrações necessárias para a operação das plataformas.",
+      "Força de Vendas & ERPs: Funcionalidades voltadas à automatização e simplificação do processo de pedidos, integradas a sistemas ERP.",
+      "APIs REST: Desenvolvimento e integração de APIs, comunicação entre sistemas, tratamento de dados e consumo de serviços externos.",
+      "Banco de Dados: Atuação com bancos relacionais, análise de dados e manutenção de funcionalidades dependentes de regras e estruturas existentes.",
+      "Requisitos & Qualidade: Análise de requisitos junto às áreas envolvidas e aplicação de testes funcionais, de API e automação E2E (Postman, Cypress, Playwright), com o fluxo acompanhado no Jira e Azure DevOps.",
     ],
   },
 ];
@@ -27,7 +29,7 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="w-full flex justify-around mx-auto h-auto flex-col md:flex-row p-6 gap-12 md:gap-0"
+      className="w-full flex justify-around mx-auto h-auto flex-col items-center lg:flex-row lg:items-stretch p-6 gap-12 lg:gap-0"
     >
       <div className="flex flex-col gap-4">
         <SectionLabel file="experience.spec.ts" describe="Experiência" />
@@ -74,16 +76,16 @@ export default function ExperienceSection() {
         </DevCard>
       </div>
 
-      <div className="flex flex-col h-full justify-center items-end">
+      <div className="flex flex-col h-full justify-center items-center lg:items-end">
         <Reveal as="div" className="flex flex-col gap-4" delay={0.1}>
-          <SectionLabel file="portfolio.spec.ts" describe="QA Portfolio" />
-          <DevCard label="qa-portfolio.ts">
+          <SectionLabel file="portfolio.spec.ts" describe="Projetos" />
+          <DevCard label="projects.ts">
             <div className="flex flex-col items-center gap-4">
               <span className="text-signal text-justify w-full font-mono text-[10px] md:text-xs">{`// em construção`}</span>
-              <p className="text-primary-text max-w-2xl text-xs md:text-sm md:text-justify">
-                Projetos focados em Quality Assurance incluindo testes
-                funcionais, validação de APIs, documentação de bugs e práticas de
-                qualidade aplicadas em aplicações reais.
+              <p className="text-primary-text max-w-2xl text-start text-xs leading-relaxed text-pretty md:text-sm">
+                Projetos pessoais e de estudo focados em back-end: APIs REST
+                com Node.js, TypeScript e NestJS, modelagem de dados com Prisma
+                ORM e ambientes com Docker, aplicados em cenários reais.
               </p>
             </div>
           </DevCard>

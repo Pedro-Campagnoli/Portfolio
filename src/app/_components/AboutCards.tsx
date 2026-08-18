@@ -2,36 +2,59 @@
 
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FaCheck, FaCode } from "react-icons/fa";
-import { GoZap } from "react-icons/go";
-import { HiUsers } from "react-icons/hi";
-import { MdOutlinePalette } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
+import {
+  LuBraces,
+  LuDatabaseZap,
+  LuGauge,
+  LuGitBranch,
+  LuPanelsTopLeft,
+  LuUsersRound,
+} from "react-icons/lu";
 
 const highlights = [
   {
-    icon: FaCode,
+    icon: LuBraces,
     // tempo (ms) até o teste "passar" — ajuste livremente por card
     duration: 7602,
-    title: "Desenvolvimento Full Stack",
-    description: "Domínio de arquiteturas modernadas (Frontend e Backend). Construo aplicações completas já pensando em testabilidade, escalabilidade e manutenibilidade desde o primeiro commit.",
+    title: "Back-end com Node.js",
+    description:
+      "Construo APIs e serviços com TypeScript e NestJS em arquitetura modular, pensando em organização e manutenção desde o primeiro commit.",
   },
   {
-    icon: MdOutlinePalette,
+    icon: LuPanelsTopLeft,
     duration: 4340,
-    title: "UI/UX & Design Systems",
-    description: "Desenvolvo interfaces funcionais e intuitivas, garantindo que a experiência do usuário final seja idêntica às especificações de design e regras de negócio.",
+    title: "Interfaces consistentes",
+    description:
+      "Também atuo no front-end com React e Next.js, transformando especificações e regras de negócio em interfaces funcionais e coerentes.",
   },
   {
-    icon: GoZap,
+    icon: LuGauge,
     duration: 8240,
-    title: "Automação & Performance",
-    description: "Aplico Engenharia de Testes (E2E, API e Componentes) para otimizar pipelines de CI/CD, reduzindo o tempo de feedback e garantindo deploys rápidos e seguros.",
+    title: "Entregas confiáveis",
+    description:
+      "Aplico testes funcionais, de API e automação E2E para acelerar o feedback sem comprometer a confiança no que vai para produção.",
   },
   {
-    icon: HiUsers,
+    icon: LuGitBranch,
     duration: 5600,
-    title: "Cultura de Qualidade",
-    description: "Falo a mesma língua dos desenvolvedores e de produto. Investigo bugs na causa-raiz (código/banco) e ajudo a implementar testes antes mesmo da feature ir para produção.",
+    title: "Versionamento e fluxo",
+    description:
+      "Trabalho com Git no dia a dia e acompanho o ciclo de desenvolvimento no Jira e Azure DevOps, mantendo entregas rastreáveis.",
+  },
+  {
+    icon: LuDatabaseZap,
+    duration: 6150,
+    title: "APIs e dados",
+    description:
+      "Modelo e consulto bancos relacionais com Prisma ORM e SQL, integrando sistemas e ERPs por meio de APIs REST.",
+  },
+  {
+    icon: LuUsersRound,
+    duration: 6890,
+    title: "Regras de negócio",
+    description:
+      "Participo da análise de requisitos junto a produto, investigo problemas na causa-raiz e evoluo sistemas que já rodam em produção.",
   },
 ];
 
@@ -87,7 +110,7 @@ function TestStatus({
           initial={reduce ? false : { scale: 0.6, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 520, damping: 22 }}
-          className="text-success flex items-center gap-1.5"
+          className="text-primary flex items-center gap-1.5"
         >
           <FaCheck className="h-3 w-3" />
           <span>{formatDuration(duration)}</span>
@@ -121,7 +144,7 @@ function TestSummary({
           initial={reduce ? false : { scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 500, damping: 20 }}
-          className="bg-success/15 text-success flex h-4 w-4 items-center justify-center rounded-full"
+          className="bg-primary/15 text-primary flex h-4 w-4 items-center justify-center rounded-full"
         >
           <FaCheck className="h-2.5 w-2.5" />
         </motion.span>
@@ -135,7 +158,7 @@ function TestSummary({
           initial={reduce ? false : { scale: 1.35 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 600, damping: 18 }}
-          className="text-success inline-block"
+          className="text-primary inline-block"
         >
           {passed} passed
         </motion.span>
@@ -208,12 +231,17 @@ export default function AboutCards() {
   const elapsedList = highlights.map((h, i) =>
     startedAt ? Math.min(now - startedAt[i], h.duration) : 0,
   );
-  const passed = elapsedList.filter((e, i) => e >= highlights[i].duration).length;
+  const passed = elapsedList.filter(
+    (e, i) => e >= highlights[i].duration,
+  ).length;
   const suiteElapsed = elapsedList.length ? Math.max(...elapsedList) : 0;
 
   return (
-    <div ref={ref} className="flex flex-col gap-4 max-w-lg px-8 md:px-0">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div
+      ref={ref}
+      className="flex w-full max-w-2xl flex-col gap-5 px-8 md:px-0"
+    >
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {highlights.map((item, i) => {
           const cardElapsed = elapsedList[i];
           const done = cardElapsed >= item.duration;
@@ -232,11 +260,11 @@ export default function AboutCards() {
                 }
               }}
               className={[
-                "group relative flex cursor-pointer flex-col gap-3 rounded-lg border p-5 text-left",
+                "group relative flex cursor-pointer flex-col gap-3 rounded-lg border p-6 text-left",
                 "transition-all duration-300 ease-out hover:scale-[1.03] hover:z-10",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
                 done
-                  ? "border-success/40 bg-success/10 hover:border-success/60"
+                  ? "border-primary/40 bg-primary/10 hover:border-primary/60"
                   : "border-primary-text/20 bg-primary/5 hover:border-primary/50",
               ].join(" ")}
             >
@@ -245,7 +273,7 @@ export default function AboutCards() {
                   className={[
                     "flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-300",
                     done
-                      ? "bg-success/15 text-success"
+                      ? "bg-primary/15 text-primary"
                       : "bg-primary/10 text-primary",
                   ].join(" ")}
                 >
@@ -259,7 +287,9 @@ export default function AboutCards() {
                   reduce={!!reduce}
                 />
               </div>
-              <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
+              <h3 className="text-sm font-semibold text-foreground">
+                {item.title}
+              </h3>
               <p className="text-xs leading-relaxed text-primary-text">
                 {item.description}
               </p>

@@ -69,7 +69,16 @@ export default function Header() {
       }`}
     >
       <div className="flex items-center justify-between px-4 py-2 md:px-8">
-        <h1 className="text-lg font-display font-bold sm:text-xl">
+        <h1
+          className="text-lg font-display font-bold sm:text-xl"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg, var(--primary), var(--section-string), var(--section-keyword))",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            color: "transparent",
+          }}
+        >
           Pedro Campagnoli
         </h1>
 
