@@ -57,12 +57,12 @@ const experiences: ExperienceEntry[] = [
       {
         title: "APIs REST",
         description:
-          "integração entre sistemas, tratamento de dados e consumo de serviços externos.",
+          "desenvolvimento e integração de APIs com NestJS, conteinerização com Docker, comunicação entre sistemas e consumo de serviços externos.",
       },
       {
         title: "Dados",
         description:
-          "bancos relacionais, análise de dados e manutenção de estruturas existentes.",
+          "modelagem, consultas e manutenção de bancos relacionais PostgreSQL e MySQL.",
       },
       {
         title: "Requisitos & qualidade",
