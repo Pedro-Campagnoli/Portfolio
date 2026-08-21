@@ -1,3 +1,5 @@
+import { FaGithub } from "react-icons/fa";
+
 import DevCard from "./DevCard";
 import Reveal, { RevealItem } from "./motion/Reveal";
 import SectionLabel from "./SectionLabel";
@@ -80,13 +82,47 @@ export default function ExperienceSection() {
         <Reveal as="div" className="flex flex-col gap-4" delay={0.1}>
           <SectionLabel file="portfolio.spec.ts" describe="Projetos" />
           <DevCard label="projects.ts">
-            <div className="flex flex-col items-center gap-4">
-              <span className="text-signal text-justify w-full font-mono text-[10px] md:text-xs">{`// em construção`}</span>
-              <p className="text-primary-text max-w-2xl text-start text-xs leading-relaxed text-pretty md:text-sm">
-                Projetos pessoais e de estudo focados em back-end: APIs REST
-                com Node.js, TypeScript e NestJS, modelagem de dados com Prisma
-                ORM e ambientes com Docker, aplicados em cenários reais.
+            <div className="flex w-full flex-col gap-5">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <span className="text-signal text-[10px] md:text-xs">
+                    {`// em desenvolvimento`}
+                  </span>
+                  <h3 className="mt-2 text-base font-semibold text-foreground md:text-lg">
+                    E-commerce API
+                  </h3>
+                </div>
+
+                <a
+                  href="https://github.com/Pedro-Campagnoli/ecommerce"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ver repositório da E-commerce API no GitHub"
+                  className="flex shrink-0 items-center gap-2 rounded-xl border border-border px-3 py-2 text-[10px] text-primary-text transition-[color,border-color,transform] duration-300 hover:scale-105 hover:border-border-strong hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:text-xs"
+                >
+                  <FaGithub aria-hidden />
+                  GitHub
+                </a>
+              </div>
+
+              <p className="text-pretty text-start text-xs leading-relaxed text-primary-text md:text-sm">
+                API REST para e-commerce com autenticação de administradores e
+                clientes, além do gerenciamento de produtos, categorias, cores e
+                SKUs.
               </p>
+
+              <div className="flex flex-wrap gap-2" aria-label="Tecnologias">
+                {["NestJS", "TypeScript", "PostgreSQL", "Prisma", "Docker"].map(
+                  (technology) => (
+                    <span
+                      key={technology}
+                      className="rounded-lg border border-border bg-background px-2.5 py-1 text-[10px] text-primary-text md:text-xs"
+                    >
+                      {technology}
+                    </span>
+                  ),
+                )}
+              </div>
             </div>
           </DevCard>
         </Reveal>
