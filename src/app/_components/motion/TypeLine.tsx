@@ -1,13 +1,14 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useInView, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 type TypeLineProps = {
   text: string;
   className?: string;
   speed?: number; // ms per character
   startDelay?: number; // ms before typing starts
+  playWhenVisible?: boolean;
 };
 
 export default function TypeLine({
@@ -15,12 +16,16 @@ export default function TypeLine({
   className,
   speed = 32,
   startDelay = 250,
+  playWhenVisible = false,
 }: TypeLineProps) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.8 });
   const reduce = useReducedMotion();
   const [count, setCount] = useState(0);
+  const shouldPlay = !playWhenVisible || inView;
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || !shouldPlay) return;
     // Restart from the beginning whenever a new typing run begins
     // (text/speed/startDelay change, or reduced-motion turns back off).
     if (count !== 0) setCount(0);
@@ -43,7 +48,7 @@ export default function TypeLine({
     // restart the interval on every keystroke. It is only used to reset a
     // stale value when the effect re-runs for another reason.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text, speed, startDelay, reduce]);
+  }, [text, speed, startDelay, reduce, shouldPlay]);
 
   // Reduced motion shows the full text with no typing; the value is derived
   // rather than stored so it can never flash empty before the effect runs.
@@ -51,7 +56,7 @@ export default function TypeLine({
   const done = displayCount >= text.length;
 
   return (
-    <span className={className}>
+    <span ref={ref} className={className}>
       <span aria-hidden="true">{text.slice(0, displayCount)}</span>
       <span className="sr-only">{text}</span>
       <span

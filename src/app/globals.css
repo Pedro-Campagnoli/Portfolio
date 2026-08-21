@@ -42,6 +42,16 @@ html {
   --card-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
 }
 
+body {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.032) 0.75px,
+    transparent 0.85px
+  );
+  background-position: center top;
+  background-size: 28px 28px;
+}
+
 @theme {
   --font-sans: var(--font-inter);
   --font-display: var(--font-space-grotesk);
@@ -95,10 +105,6 @@ html {
   animation: hero-drift 18s var(--ease-in-out) infinite;
 }
 
-.hero-grid {
-  opacity: 0.25;
-}
-
 .pressable {
   transition-duration: 160ms;
   transition-timing-function: var(--ease-out);
@@ -122,6 +128,62 @@ html {
   transition: transform 200ms var(--ease-out);
 }
 
+.experience-chevron {
+  transition: transform 180ms var(--ease-out);
+}
+
+.experience-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform-origin: top;
+  transform: translateY(-4px);
+  transition:
+    grid-template-rows 210ms var(--ease-out),
+    opacity 150ms ease,
+    transform 210ms var(--ease-out);
+}
+
+.experience-panel.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience-item[data-open="true"] .experience-chevron {
+  transform: rotate(180deg);
+}
+
+.projects-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.project-grid-item:only-child .project-card,
+.project-grid-item:only-child .project-card-content {
+  min-height: 18rem;
+}
+
+.project-card {
+  isolation: isolate;
+  transition:
+    border-color 180ms ease,
+    transform 160ms var(--ease-out);
+}
+
+.project-card-content {
+  transition:
+    filter 180ms ease,
+    opacity 180ms ease;
+}
+
+.project-card-overlay {
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 180ms ease,
+    transform 180ms var(--ease-out);
+}
+
 .pressable:active:not(:focus-visible),
 .social-link:active:not(:focus-visible) {
   transform: scale(0.97);
@@ -129,6 +191,22 @@ html {
 
 .interactive-card:active:not(:focus-visible) {
   transform: scale(0.99);
+}
+
+.project-card:active:not(:focus-visible) {
+  transform: scale(0.98);
+}
+
+.project-card:focus-visible .project-card-content {
+  filter: blur(2px);
+  opacity: 0.22;
+  transition-duration: 0ms;
+}
+
+.project-card:focus-visible .project-card-overlay {
+  opacity: 1;
+  transform: scale(1);
+  transition-duration: 0ms;
 }
 
 :where(a, button):focus-visible {
@@ -154,6 +232,20 @@ html {
   .group:hover .tech-icon {
     transform: translateY(-4px);
   }
+
+  .project-card:hover {
+    border-color: var(--border-strong);
+  }
+
+  .project-card:hover .project-card-content {
+    filter: blur(1px);
+    opacity: 0.4;
+  }
+
+  .project-card:hover .project-card-overlay {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Respect users who ask for less motion: kill transitions, animations,
@@ -171,7 +263,11 @@ html {
   .pressable,
   .social-link,
   .interactive-card,
-  .tech-icon {
+  .tech-icon,
+  .experience-chevron,
+  .experience-panel,
+  .project-card,
+  .project-card-overlay {
     transform: none !important;
   }
 }
