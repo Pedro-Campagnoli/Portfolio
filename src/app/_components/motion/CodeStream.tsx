@@ -36,10 +36,10 @@ export default function CodeStream({
         <motion.div
           key={i}
           variants={{
-            hidden: { opacity: 0, x: -8 },
+            hidden: { opacity: 0, transform: "translateX(-8px)" },
             show: {
               opacity: 1,
-              x: 0,
+              transform: "translateX(0)",
               transition: { duration: DURATION.fast, ease: EASE },
             },
           }}

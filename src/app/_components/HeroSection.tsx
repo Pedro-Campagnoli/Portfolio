@@ -92,7 +92,7 @@ export default function HeroSection() {
 
       <div className="flex w-full flex-col items-start justify-between gap-10 text-center lg:flex-row">
         <motion.div
-          className="order-2 mx-auto flex min-w-0 flex-col items-start justify-center gap-6 lg:order-1 lg:mx-0"
+          className="order-1 mx-auto flex min-w-0 flex-col items-start justify-center gap-6 lg:mx-0"
           initial={reduce ? false : "hidden"}
           animate="show"
           variants={containerVariants(0.09, 0.1)}
@@ -138,13 +138,13 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex gap-4 mx-auto md:mx-0">
-            <span className="text-signal font-mono text-[10px] md:text-sm p-2 rounded-xl border border-border bg-surface hover:border-border-strong">
+            <span className="text-signal rounded-xl border border-border bg-surface p-2 font-mono text-[10px] md:text-sm">
               ✓ <CountUp to={6} delay={400} /> passed
             </span>
-            <span className="text-signal font-mono text-[10px] md:text-sm p-2 rounded-xl border border-border bg-surface hover:border-border-strong">
+            <span className="text-signal rounded-xl border border-border bg-surface p-2 font-mono text-[10px] md:text-sm">
               · 0 failed
             </span>
-            <span className="text-signal font-mono text-[10px] md:text-sm p-2 rounded-xl border border-border bg-surface hover:border-border-strong">
+            <span className="text-signal rounded-xl border border-border bg-surface p-2 font-mono text-[10px] md:text-sm">
               · build: ready
             </span>
           </motion.div>
@@ -155,18 +155,18 @@ export default function HeroSection() {
           >
             <a
               href="#experience"
-              className="text-white font-bold text-[10px] md:text-sm bg-primary flex items-center gap-2 rounded-2xl px-6 py-4 shadow-lg shadow-transparent transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:shadow-primary/30"
+              className="pressable flex items-center gap-2 rounded-2xl bg-primary px-6 py-4 text-[10px] font-bold text-white shadow-lg shadow-transparent transition-[transform,box-shadow] hover:shadow-primary/30 md:text-sm"
             >
               Ver Experiência
-              <FaArrowRight />
+              <FaArrowRight aria-hidden />
             </a>
 
             <a
               href="mailto:dev.pedro.campagnoli@gmail.com"
-              className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-6 py-4 text-[10px] md:text-sm text-foreground transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:border-border-strong"
+              className="pressable flex items-center gap-2 rounded-2xl border border-border bg-surface px-6 py-4 text-[10px] text-foreground transition-[transform,border-color] hover:border-border-strong md:text-sm"
             >
               Contato
-              <LuMail />
+              <LuMail aria-hidden />
             </a>
 
             <div className="flex text-primary-text gap-6 items-center ml-4">
@@ -175,11 +175,9 @@ export default function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
+                className="social-link rounded-md"
               >
-                <FaGithub
-                  className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-primary hover:scale-125"
-                  size={38}
-                />
+                <FaGithub aria-hidden size={38} />
               </a>
 
               <a
@@ -187,31 +185,27 @@ export default function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
+                className="social-link rounded-md"
               >
-                <FaLinkedinIn
-                  className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-primary hover:scale-125"
-                  size={38}
-                />
+                <FaLinkedinIn aria-hidden size={38} />
               </a>
 
               <a
                 href="mailto:dev.pedro.campagnoli@gmail.com"
                 aria-label="Email"
+                className="social-link rounded-md"
               >
-                <LuMail
-                  className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-primary hover:scale-125"
-                  size={38}
-                />
+                <LuMail aria-hidden size={38} />
               </a>
             </div>
           </motion.div>
         </motion.div>
 
         <motion.div
-          className="order-1 mx-auto w-full min-w-0 max-w-md lg:order-2 lg:mx-0"
-          initial={reduce ? false : { opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="order-2 mx-auto w-full min-w-0 max-w-md lg:mx-0"
+          initial={reduce ? false : { opacity: 0, transform: "scale(0.96)" }}
+          animate={{ opacity: 1, transform: "scale(1)" }}
+          transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1], delay: 0.2 }}
         >
           <DevCard label="developer.ts">
             <div className="flex w-full min-w-0 flex-col">
@@ -221,6 +215,7 @@ export default function HeroSection() {
                   height={200}
                   src="https://github.com/Pedro-Campagnoli.png"
                   alt="Pedro Campagnoli"
+                  priority
                   className="h-32 w-32 rounded-full border-2 border-border"
                 />
               </div>

@@ -2,19 +2,19 @@ import type { Variants } from "motion/react";
 
 // Snappy personality: quick, ease-out-expo, no bounce.
 export const DURATION = {
-  fast: 0.3,
-  base: 0.45,
+  fast: 0.2,
+  base: 0.4,
 } as const;
 
-export const EASE = [0.22, 1, 0.36, 1] as const;
+export const EASE = [0.23, 1, 0.32, 1] as const;
 
 export const VIEWPORT = { once: true, margin: "-80px" } as const;
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, transform: "translateY(12px)" },
   show: {
     opacity: 1,
-    y: 0,
+    transform: "translateY(0)",
     transition: { duration: DURATION.base, ease: EASE },
   },
 };

@@ -16,42 +16,42 @@ const highlights = [
   {
     icon: LuBraces,
     // tempo (ms) até o teste "passar" — ajuste livremente por card
-    duration: 7602,
+    duration: 1380,
     title: "Back-end com Node.js",
     description:
       "Construo APIs e serviços com TypeScript e NestJS em arquitetura modular, pensando em organização e manutenção desde o primeiro commit.",
   },
   {
     icon: LuPanelsTopLeft,
-    duration: 4340,
+    duration: 820,
     title: "Interfaces consistentes",
     description:
       "Também atuo no front-end com React e Next.js, transformando especificações e regras de negócio em interfaces funcionais e coerentes.",
   },
   {
     icon: LuGauge,
-    duration: 8240,
+    duration: 1520,
     title: "Entregas confiáveis",
     description:
       "Aplico testes funcionais, de API e automação E2E para acelerar o feedback sem comprometer a confiança no que vai para produção.",
   },
   {
     icon: LuGitBranch,
-    duration: 5600,
+    duration: 1040,
     title: "Versionamento e fluxo",
     description:
       "Trabalho com Git no dia a dia e acompanho o ciclo de desenvolvimento no Jira e Azure DevOps, mantendo entregas rastreáveis.",
   },
   {
     icon: LuDatabaseZap,
-    duration: 6150,
+    duration: 1160,
     title: "APIs e dados",
     description:
       "Modelo e consulto bancos relacionais com Prisma ORM e SQL, integrando sistemas e ERPs por meio de APIs REST.",
   },
   {
     icon: LuUsersRound,
-    duration: 6890,
+    duration: 1280,
     title: "Regras de negócio",
     description:
       "Participo da análise de requisitos junto a produto, investigo problemas na causa-raiz e evoluo sistemas que já rodam em produção.",
@@ -67,27 +67,27 @@ const formatDuration = (ms: number) => `${(ms / 1000).toFixed(2)}s`;
 
 function Spinner({ className = "" }: { className?: string }) {
   return (
-    <svg
-      className={`animate-spin ${className}`}
-      viewBox="0 0 24 24"
-      fill="none"
+    <div
+      className={`animate-spin [animation-duration:650ms] ${className}`}
       aria-hidden
     >
-      <circle
-        cx="12"
-        cy="12"
-        r="9"
-        stroke="currentColor"
-        strokeWidth="3"
-        className="opacity-20"
-      />
-      <path
-        d="M12 3a9 9 0 0 1 9 9"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-    </svg>
+      <svg className="h-full w-full" viewBox="0 0 24 24" fill="none">
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          stroke="currentColor"
+          strokeWidth="3"
+          className="opacity-20"
+        />
+        <path
+          d="M12 3a9 9 0 0 1 9 9"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
   );
 }
 
@@ -107,8 +107,8 @@ function TestStatus({
       {done ? (
         <motion.div
           // Re-anima a cada nova aprovação (key muda quando o card reinicia).
-          initial={reduce ? false : { scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={reduce ? false : { opacity: 0, transform: "scale(0.92)" }}
+          animate={{ opacity: 1, transform: "scale(1)" }}
           transition={{ type: "spring", stiffness: 520, damping: 22 }}
           className="text-primary flex items-center gap-1.5"
         >
@@ -141,8 +141,8 @@ function TestSummary({
     <div className="border-primary-text/15 flex items-center gap-2 border-t pt-3 font-mono text-[11px] leading-none tabular-nums">
       {done ? (
         <motion.span
-          initial={reduce ? false : { scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={reduce ? false : { opacity: 0, transform: "scale(0.9)" }}
+          animate={{ opacity: 1, transform: "scale(1)" }}
           transition={{ type: "spring", stiffness: 500, damping: 20 }}
           className="bg-primary/15 text-primary flex h-4 w-4 items-center justify-center rounded-full"
         >
@@ -155,8 +155,8 @@ function TestSummary({
       <span className="flex items-center gap-1.5">
         <motion.span
           key={passed}
-          initial={reduce ? false : { scale: 1.35 }}
-          animate={{ scale: 1 }}
+          initial={reduce ? false : { transform: "scale(1.08)" }}
+          animate={{ transform: "scale(1)" }}
           transition={{ type: "spring", stiffness: 600, damping: 18 }}
           className="text-primary inline-block"
         >
@@ -202,13 +202,21 @@ export default function AboutCards() {
   useEffect(() => {
     if (!startedAt || reduce) return;
 
+    let lastUpdate = 0;
     let raf = requestAnimationFrame(function loop() {
       const n = performance.now();
-      setNow(n);
+      if (n - lastUpdate >= 50) {
+        setNow(n);
+        lastUpdate = n;
+      }
       const anyRunning = startedAt.some(
         (s, i) => n - s < highlights[i].duration,
       );
-      if (anyRunning) raf = requestAnimationFrame(loop);
+      if (anyRunning) {
+        raf = requestAnimationFrame(loop);
+      } else {
+        setNow(n);
+      }
     });
 
     return () => cancelAnimationFrame(raf);
@@ -247,21 +255,13 @@ export default function AboutCards() {
           const done = cardElapsed >= item.duration;
 
           return (
-            <div
+            <button
+              type="button"
               key={item.title}
-              role="button"
-              tabIndex={0}
               aria-label={`Reexecutar teste: ${item.title}`}
               onClick={() => restart(i)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  restart(i);
-                }
-              }}
               className={[
-                "group relative flex cursor-pointer flex-col gap-3 rounded-lg border p-6 text-left",
-                "transition-all duration-300 ease-out hover:scale-[1.03] hover:z-10",
+                "interactive-card group relative flex w-full cursor-pointer appearance-none flex-col gap-3 rounded-lg border p-6 text-left",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
                 done
                   ? "border-primary/40 bg-primary/10 hover:border-primary/60"
@@ -271,13 +271,13 @@ export default function AboutCards() {
               <div className="flex items-center justify-between">
                 <div
                   className={[
-                    "flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-300",
+                    "flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-160",
                     done
                       ? "bg-primary/15 text-primary"
                       : "bg-primary/10 text-primary",
                   ].join(" ")}
                 >
-                  <item.icon className="h-5 w-5" />
+                  <item.icon aria-hidden className="h-5 w-5" />
                 </div>
                 <TestStatus
                   key={startedAt ? startedAt[i] : "idle"}
@@ -293,7 +293,7 @@ export default function AboutCards() {
               <p className="text-xs leading-relaxed text-primary-text">
                 {item.description}
               </p>
-            </div>
+            </button>
           );
         })}
       </div>

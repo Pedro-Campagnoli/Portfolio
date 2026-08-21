@@ -15,7 +15,7 @@ type Tech = { icon: string; title: string };
 const technologies: Tech[] = [
   { icon: "/icons/node.svg", title: "Node.js" },
   { icon: "/icons/typescript.svg", title: "TypeScript" },
-  { icon: "/icons/nest.svg", title: "Nest.js" },
+  { icon: "/icons/nest.svg", title: "NestJS" },
   { icon: "/icons/javascript.svg", title: "JavaScript" },
   { icon: "/icons/sql.svg", title: "SQL" },
   { icon: "/icons/docker.svg", title: "Docker" },
@@ -47,7 +47,7 @@ function TechItem({ tech }: { tech: Tech }) {
         width={40}
         height={40}
         unoptimized
-        className="h-10 w-10 object-contain transition-transform duration-200 group-hover:-translate-y-1"
+        className="tech-icon h-10 w-10 object-contain"
       />
       <span className="text-primary-text text-center text-[10px] md:text-xs">
         {tech.title}
@@ -60,7 +60,9 @@ export default function TechStack() {
   const [expanded, setExpanded] = useState(false);
   const reduce = useReducedMotion();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [collapsedHeight, setCollapsedHeight] = useState(COLLAPSED_ROW_FALLBACK);
+  const [collapsedHeight, setCollapsedHeight] = useState(
+    COLLAPSED_ROW_FALLBACK,
+  );
 
   // Measure the height of the first grid row so the collapsed state clips to
   // exactly one row on any breakpoint (row 1 is whichever icons share the top
@@ -93,13 +95,13 @@ export default function TechStack() {
   const hasMore = technologies.length > MOBILE_VISIBLE;
 
   return (
-    <div className="border-border bg-surface overflow-hidden w-full rounded-2xl border">
+    <div className="w-full overflow-hidden rounded-2xl border border-border bg-surface [box-shadow:var(--card-shadow)]">
       <div className="mb-2 flex items-center">
         <div className="flex items-center justify-between gap-2 border-b border-border w-full bg-card-header-background px-4 py-3">
           <div className="flex items-center gap-1.5 md:gap-2">
-            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-danger hover:scale-125 transition-transform duration-100" />
-            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-warning hover:scale-125 transition-transform duration-100" />
-            <span className="h-1.5 w-1.5 md:h-3 md:w-3 rounded-full bg-success hover:scale-125 transition-transform duration-100" />
+            <span className="h-1.5 w-1.5 rounded-full bg-danger md:h-3 md:w-3" />
+            <span className="h-1.5 w-1.5 rounded-full bg-warning md:h-3 md:w-3" />
+            <span className="h-1.5 w-1.5 rounded-full bg-success md:h-3 md:w-3" />
             <span className="ml-0.5 select-none text-[10px] md:text-sm text-primary-text ">
               stacks.ts
             </span>
@@ -110,12 +112,12 @@ export default function TechStack() {
               onClick={() => setExpanded((prev) => !prev)}
               aria-expanded={expanded}
               aria-controls="tech-grid"
-              className="text-primary flex items-center gap-1 text-[10px] md:text-md font-medium transition-opacity hover:opacity-80"
+              className="pressable text-section-string flex items-center gap-1 rounded-md text-[10px] font-medium transition-[transform,opacity] hover:opacity-80 md:text-sm"
             >
               {expanded ? "Ver menos" : "Ver mais"}
               <LuChevronDown
                 aria-hidden
-                className={`transition-transform duration-500 ease-in-out ${
+                className={`transition-transform duration-180 ease-[cubic-bezier(0.77,0,0.175,1)] ${
                   expanded ? "rotate-180" : ""
                 }`}
               />
@@ -129,7 +131,7 @@ export default function TechStack() {
         ref={wrapperRef}
         initial={false}
         animate={{ height: expanded ? "auto" : collapsedHeight }}
-        transition={{ duration: reduce ? 0 : 0.45, ease: EASE }}
+        transition={{ duration: reduce ? 0 : 0.28, ease: EASE }}
         className="overflow-hidden"
       >
         <Reveal
